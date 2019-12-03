@@ -58,6 +58,11 @@ export const navItems: INavData[] = [
         icon: "icon-puzzle"
       },
       {
+        name: "Position",
+        url: "/setup/positionlist",
+        icon: "icon-puzzle"
+      },
+      {
         name: "Bank",
         url: "/setup/banklist",
         icon: "icon-puzzle"

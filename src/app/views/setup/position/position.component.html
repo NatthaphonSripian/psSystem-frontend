@@ -1,1 +1,47 @@
-<p>position works!</p>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col col-md">
+      <div class="card">
+        <div class="card-header">
+          <div class="col-2 float-left text-left">
+            <h3>Position</h3>
+          </div>
+          <div class="col-2 float-right text-right">
+            <a [routerLink]="['/setup/positionlist']" id="link-back-banklist">
+              <button type="button" class="btn btn-info" id="btn-new-distribution">
+                <i class="fa fa-arrow-left"></i>
+              </button>
+            </a>
+            &nbsp;
+            <a>
+              <button type="button" (click)="onSave()" class="btn btn-success" id="btn-save-back">
+                <i class="fa fa-save"></i>
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div>
+            <input type="hidden" id="positionId">
+          </div>
+          <div class="form-group">
+            <label for="lbl-position-code">Bank Code</label>
+            <input type="text" class="form-control" id="position-code" placeholder="Enter your position code"
+              [(ngModel)]="position.positionCode">
+
+          </div>
+          <div class="form-group">
+            <label for="lbl-position-name-th">Bank Name Thai</label>
+            <input type="text" class="form-control" id="position-name-th" placeholder="Enter your position name"
+              [(ngModel)]="position.positionNameTh">
+          </div>
+          <div class="form-group">
+            <label for="lbl-position-name-en">Bank Name Eng</label>
+            <input type="text" class="form-control" id="position-name-en" placeholder="Enter your position name"
+              [(ngModel)]="position.positionNameEn">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
