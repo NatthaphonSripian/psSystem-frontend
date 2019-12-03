@@ -1,0 +1,46 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col col-md">
+      <div class="card">
+        <div class="card-header">
+          <div class="col-2 float-left text-left">
+            <h3>Department</h3>
+          </div>
+          <div class="col-2 float-right text-right">
+            <a [routerLink]="['/setup/departmentlist']" id="link-back-banklist">
+              <button type="button" class="btn btn-info" id="btn-new-distribution">
+                <i class="fa fa-arrow-left"></i>
+              </button>
+            </a>
+            &nbsp;
+            <a>
+              <button type="button" (click)="onSave()" class="btn btn-success" id="btn-save-back">
+                <i class="fa fa-save"></i>
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div>
+            <input type="hidden" id="departmentId">
+          </div>
+          <div class="form-group">
+            <label for="lbl-department-code">Department Code</label>
+            <input type="text" class="form-control" id="department-code" placeholder="Enter your department code"
+              [(ngModel)]="department.departmentCode">
+          </div>
+          <div class="form-group">
+            <label for="lbl-department-name-th">Department Name Thai</label>
+            <input type="text" class="form-control" id="department-name-th" placeholder="Enter your department name"
+              [(ngModel)]="department.departmentNameTh">
+          </div>
+          <div class="form-group">
+            <label for="lbl-department-name-en">Department Name Eng</label>
+            <input type="text" class="form-control" id="department-name-en" placeholder="Enter your department name"
+              [(ngModel)]="department.departmentNameEn">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

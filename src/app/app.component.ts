@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  // tslint:disable-next-line
+  selector: "body",
+  template: "<router-outlet></router-outlet>"
 })
-export class AppComponent {
-  title = 'psSystem-web';
+export class AppComponent implements OnInit {
+  constructor(private routes: Router) {}
+
+  ngOnInit() {
+   
+  }
 }

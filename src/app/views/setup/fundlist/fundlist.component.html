@@ -1,0 +1,93 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col col-md">
+      <div class="card">
+        <div class="card-header">
+          <div class="col-2 float-left text-left">
+            <strong>Fund List</strong>
+          </div>
+
+          <div class="col-2 float-right text-right">
+            <a [routerLink]="['/setup/fund']" id="link-new-fund">
+              <button type="button" class="btn btn-info active" id="btn-new-fund">
+                New Fund
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-responsive-sm table-bordered table-striped table-sm"
+              aria-describedby="Table Fund Order">
+              <thead>
+                <tr>
+                  <th id="sort-fund-id" class="text-center sort-cursor"></th>
+                  <th id="sort-fund-code" class="text-center">
+                    Fund Code
+                  </th>
+                  <th id="sort-fund-code" class="text-center">
+                    Fund Name TH
+                  </th>
+                  <th id="sort-fund-code" class="text-center">
+                    Fund Name EN
+                  </th>
+                  <th id="sort-fund-code" class="text-center">
+                    Fund Short Name
+                  </th>
+                  <th id="action" class="text-center">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="fundListFiltered.length == 0">
+                  <td class="text-center" colspan="100">
+                    No data available in table
+                  </td>
+                </tr>
+                <tr *ngFor="let fund of fundListFiltered; let i = index">
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ fund.id }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ fund.fundCode }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ fund.fundNameTh }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ fund.fundNameEn }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ fund.fundShortName }}
+                    </label>
+                  </td>
+                  <td>
+                    <div class="col-12">
+                      <button type="button" (click)=updateFund(fund.id) class="btn btn-warning" id="btn-edit-fund">
+                        <i class="fa fa-edit"></i>
+                      </button>
+                      &nbsp;
+                      <button type="button" (click)=deleteFund(fund.id) class="btn btn-danger" id="btn-edit-fund">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

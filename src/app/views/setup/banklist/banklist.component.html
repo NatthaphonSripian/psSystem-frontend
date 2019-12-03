@@ -1,0 +1,93 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col col-md">
+      <div class="card">
+        <div class="card-header">
+          <div class="col-2 float-left text-left">
+            <strong>Bank List</strong>
+          </div>
+
+          <div class="col-2 float-right text-right">
+            <a [routerLink]="['/setup/bank']" id="link-new-bank">
+              <button type="button" class="btn btn-info active" id="btn-new-bank">
+                New Bank
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-responsive-sm table-bordered table-striped table-sm"
+              aria-describedby="Table Bank Order">
+              <thead>
+                <tr>
+                  <th id="sort-bank-do" class="text-center sort-cursor"></th>
+                  <th id="sort-bank-code" class="text-center">
+                    Bank Code
+                  </th>
+                  <th id="sort-bank-code" class="text-center">
+                    Bank Name TH
+                  </th>
+                  <th id="sort-bank-code" class="text-center">
+                    Bank Name EN
+                  </th>
+                  <th id="sort-bank-code" class="text-center">
+                    Bank Short Name
+                  </th>
+                  <th id="action" class="text-center">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="bankListFiltered.length == 0">
+                  <td class="text-center" colspan="100">
+                    No data available in table
+                  </td>
+                </tr>
+                <tr *ngFor="let bank of bankListFiltered; let i = index">
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ bank.id }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ bank.bankCode }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ bank.bankNameTh }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ bank.bankNameEn }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ bank.bankShortName }}
+                    </label>
+                  </td>
+                  <td>
+                    <div class="col-12">
+                      <button type="button" (click)=updateBank(bank.id) class="btn btn-warning" id="btn-edit-bank">
+                        <i class="fa fa-edit"></i>
+                      </button>
+                      &nbsp;
+                      <button type="button" (click)=deleteBank(bank.id) class="btn btn-danger" id="btn-edit-bank">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

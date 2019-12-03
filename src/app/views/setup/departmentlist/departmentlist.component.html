@@ -1,0 +1,94 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col col-md">
+      <div class="card">
+        <div class="card-header">
+          <div class="col-2 float-left text-left">
+            <strong>Department List</strong>
+          </div>
+
+          <div class="col-2 float-right text-right">
+            <a [routerLink]="['/setup/department']" id="link-new-fund">
+              <button type="button" class="btn btn-info active" id="btn-new-fund">
+                New Department
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-sm my-0 mx-auto" aria-describedby="Table Department Order">
+              <thead>
+                <tr>
+                  <th id="sort-department-id" class="text-center sort-cursor"></th>
+                  <th id="sort-department-code" class="text-center">
+                    Department Code
+                  </th>
+                  <th id="sort-department-code" class="text-center">
+                    Department Name TH
+                  </th>
+                  <th id="sort-department-code" class="text-center">
+                    Department Name EN
+                  </th>
+                  <th id="sort-department-code" class="text-center">
+                    Parrent department
+                  </th>
+                  <th id="action" class="text-center">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="departmentListFiltered.length == 0">
+                  <td class="text-center" colspan="100">
+                    No data available in table
+                  </td>
+                </tr>
+                <tr *ngFor="let department of departmentListFiltered; let i = index">
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ department.id }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ department.departmentCode }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ department.departmentNameTh }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ department.departmentNameEn }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ department.parentDepartment.departmentCode }}
+                    </label>
+                  </td>
+                  <td>
+                    <div class="col-12">
+                      <button type="button" (click)=updateDepartment(department.id) class="btn btn-warning"
+                        id="btn-edit-bank">
+                        <i class="fa fa-edit"></i>
+                      </button>
+                      &nbsp;
+                      <button type="button" (click)=deleteDepartment(department.id) class="btn btn-danger"
+                        id="btn-edit-bank">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
