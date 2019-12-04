@@ -67,7 +67,7 @@
                   </td>
                   <td class="pl-4 checkbox align-middle">
                     <label>
-                      {{ department.parentDepartment.departmentCode }}
+                      {{ department.parentDepartment && department.parentDepartment.departmentCode ?  department.parentDepartment.departmentCode: ''}}
                     </label>
                   </td>
                   <td>
