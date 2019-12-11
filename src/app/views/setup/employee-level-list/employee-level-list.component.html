@@ -1,0 +1,86 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col col-md">
+      <div class="card">
+        <div class="card-header">
+          <div class="col-2 float-left text-left">
+            <strong>Employee Group List</strong>
+          </div>
+
+          <div class="col-2 float-right text-right">
+            <a [routerLink]="['/setup/employeelevel']" id="link-new-fund">
+              <button type="button" class="btn btn-info active" id="btn-new-fund">
+                New Employee Level
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-sm my-0 mx-auto" aria-describedby="Table Employee Level Order">
+              <thead>
+                <tr>
+                  <th id="sort-department-id" class="text-center sort-cursor"></th>
+                  <th id="sort-department-code" class="text-center">
+                    Employee Level Code
+                  </th>
+                  <th id="sort-department-code" class="text-center">
+                    Employee Level Name TH
+                  </th>
+                  <th id="sort-department-code" class="text-center">
+                    Employee Level Name EN
+                  </th>
+                  <th id="action" class="text-center">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="employeeLevelListFiltered.length == 0">
+                  <td class="text-center" colspan="100">
+                    No data available in table
+                  </td>
+                </tr>
+                <tr *ngFor="let employeeLevel of employeeLevelListFiltered; let i = index">
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ employeeLevel.id }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ employeeLevel.employeeLevelCode }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ employeeLevel.employeeLevelNameTh }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ employeeLevel.employeeLevelNameEn }}
+                    </label>
+                  </td>
+                  <td>
+                    <div class="col-12">
+                      <button type="button" (click)=updateEmployeeLevel(employeeLevel.id) class="btn btn-warning"
+                        id="btn-edit-bank">
+                        <i class="fa fa-edit"></i>
+                      </button>
+                      &nbsp;
+                      <button type="button" (click)=deleteEmployeeLevel(employeeLevel.id) class="btn btn-danger"
+                        id="btn-edit-bank">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

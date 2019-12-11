@@ -1,0 +1,86 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col col-md">
+      <div class="card">
+        <div class="card-header">
+          <div class="col-2 float-left text-left">
+            <strong>Employee Group List</strong>
+          </div>
+
+          <div class="col-2 float-right text-right">
+            <a [routerLink]="['/setup/employeegroup']" id="link-new-fund">
+              <button type="button" class="btn btn-info active" id="btn-new-fund">
+                New Employee Group
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-sm my-0 mx-auto" aria-describedby="Table Department Order">
+              <thead>
+                <tr>
+                  <th id="sort-department-id" class="text-center sort-cursor"></th>
+                  <th id="sort-department-code" class="text-center">
+                    Employee Group Code
+                  </th>
+                  <th id="sort-department-code" class="text-center">
+                    Employee Group Name TH
+                  </th>
+                  <th id="sort-department-code" class="text-center">
+                    Employee Group Name EN
+                  </th>
+                  <th id="action" class="text-center">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="employeeGroupListFiltered.length == 0">
+                  <td class="text-center" colspan="100">
+                    No data available in table
+                  </td>
+                </tr>
+                <tr *ngFor="let employeeGroup of employeeGroupListFiltered; let i = index">
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ employeeGroup.id }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ employeeGroup.employeeGroupCode }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ employeeGroup.employeeGroupNameTh }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ employeeGroup.employeeGroupNameEn }}
+                    </label>
+                  </td>
+                  <td>
+                    <div class="col-12">
+                      <button type="button" (click)=updateEmployeeGroup(employeeGroup.id) class="btn btn-warning"
+                        id="btn-edit-bank">
+                        <i class="fa fa-edit"></i>
+                      </button>
+                      &nbsp;
+                      <button type="button" (click)=deleteEmployeeGroup(employeeGroup.id) class="btn btn-danger"
+                        id="btn-edit-bank">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

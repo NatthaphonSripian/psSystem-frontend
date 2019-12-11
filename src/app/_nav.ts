@@ -53,6 +53,16 @@ export const navItems: INavData[] = [
     icon: "icon-pencil",
     children: [
       {
+        name: "Employee Group",
+        url: "/setup/employeegrouplist",
+        icon: "icon-puzzle"
+      },
+      {
+        name: "Employee Level",
+        url: "/setup/employeelevellist",
+        icon: "icon-puzzle"
+      },
+      {
         name: "Department",
         url: "/setup/departmentlist",
         icon: "icon-puzzle"

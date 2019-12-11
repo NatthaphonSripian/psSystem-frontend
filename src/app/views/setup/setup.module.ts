@@ -9,6 +9,10 @@ import { BankComponent } from './bank/bank.component';
 import { BanklistComponent } from './banklist/banklist.component';
 import { DepartmentComponent } from './department/department.component';
 import { DepartmentlistComponent } from './departmentlist/departmentlist.component';
+import { EmployeeGroupListComponent } from './employee-group-list/employee-group-list.component';
+import { EmployeeGroupComponent } from './employee-group/employee-group.component';
+import { EmployeeLevelListComponent } from './employee-level-list/employee-level-list.component';
+import { EmployeeLevelComponent } from './employee-level/employee-level.component';
 import { FundComponent } from './fund/fund.component';
 import { FundlistComponent } from './fundlist/fundlist.component';
 import { PositionComponent } from './position/position.component';
@@ -33,7 +37,11 @@ import { SetupRoutingModule } from './setup-routing.module';
     DepartmentComponent,
     DepartmentlistComponent,
     PositionlistComponent,
-    PositionComponent
+    PositionComponent,
+    EmployeeGroupComponent,
+    EmployeeGroupListComponent,
+    EmployeeLevelComponent,
+    EmployeeLevelListComponent
   ]
 })
 export class SetupModule {}
