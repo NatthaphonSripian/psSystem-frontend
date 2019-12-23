@@ -35,5 +35,12 @@ export const API_URL = {
   EMPLOYEE_LEVEL_GET_ALL: `${BASE_URL}/api/employee/level/all`,
   EMPLOYEE_LEVEL_GET_BY_ID: `${BASE_URL}/api/employee/level/`,
   EMPLOYEE_LEVEL_SAVE: `${BASE_URL}/api/employee/level/save`,
-  EMPLOYEE_LEVEL_DELETE: `${BASE_URL}/api/employee/level/delete/`
+  EMPLOYEE_LEVEL_DELETE: `${BASE_URL}/api/employee/level/delete/`,
+
+
+  // Organization
+  ORGANIZATION_GET_ALL: `${BASE_URL}/api/organization/all`,
+  ORGANIZATION_GET_BY_ID: `${BASE_URL}/api/organization/`,
+  ORGANIZATION_SAVE: `${BASE_URL}/api/organization/save`,
+  ORGANIZATION_DELETE: `${BASE_URL}/api/organization/delete`,
 };

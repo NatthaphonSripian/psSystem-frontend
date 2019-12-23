@@ -3,11 +3,11 @@
     <div class="col col-md">
       <div class="card">
         <div class="card-header">
-          <div class="col-2 float-left text-left">
-            <h3>Organization</h3>
+          <div class="col-8 float-left text-left">
+            <h4>Organization</h4>
           </div>
-          <div class="col-2 float-right text-right">
-            <a [routerLink]="['/setup/organizationlist']" id="link-organization-banklist">
+          <div class="col-4 float-right text-right">
+            <a [routerLink]="['/organization/orglist']" id="link-organization-banklist">
               <button type="button" class="btn btn-info" id="btn-new-distribution">
                 <i class="fa fa-arrow-left"></i>
               </button>
@@ -21,24 +21,143 @@
           </div>
         </div>
         <div class="card-body">
-          <div class="form-group">
-            <label for="company">Organization</label>
-            <input type="text" class="form-control" id="organization" placeholder="Enter your organization name">
-          </div>
+
           <div class="row">
-            <div class="form-group col-sm-8">
-              <label for="city">City</label>
-              <input type="text" class="form-control" id="city" placeholder="Enter your city">
+            <div class="col-md-12">
+              <!-- Nav tabs -->
+              <tabset>
+                <tab>
+                  <ng-template tabHeading><i class="icon-calculator"></i> Info</ng-template>
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <div class="row">
+                        <div class="form-group col-sm-4">
+                          <label for="company">Organization Code</label>
+                          <input type="text" class="form-control" id="organization-code"
+                            placeholder="Enter your organization code" [(ngModel)]="organization.orgCode">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-sm-8">
+                          <label for="company">Organization</label>
+                          <input type="text" class="form-control" id="organization"
+                            placeholder="Enter your organization name" [(ngModel)]="organization.orgName">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-sm-8">
+                          <label for="company">Organization EN</label>
+                          <input type="text" class="form-control" id="organization"
+                            placeholder="Enter your organization name eng" [(ngModel)]="organization.orgNameEng">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="row">
+                        <img src="" class="img-fluid" alt="Responsive image">
+                      </div>
+                      <div class="row">
+                        <div class="form-group col-sm-4">
+                          <label class="col-sm col-form-label" for="file-input">File input</label>
+                          <div class="col-sm">
+                            <input type="file" id="file-input" name="file-input">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </tab>
+                <tab>
+                  <ng-template tabHeading><i class="icon-pie-chart"></i> Address</ng-template>
+                  <div class="row">
+                    <div class="form-group col-sm-8">
+                      <label for="city">Address</label>
+                      <input type="text" class="form-control" id="address" placeholder="Enter your address"
+                        [(ngModel)]="organization.addressName">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-sm-4">
+                      <label for="postal-code">Address No</label>
+                      <input type="text" class="form-control" id="address-no" placeholder="Address no"
+                        [(ngModel)]="organization.addressNo">
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label for="postal-code">Group No</label>
+                      <input type="text" class="form-control" id="group-no" placeholder="Group no"
+                        [(ngModel)]="organization.groupNo">
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label for="postal-code">Building</label>
+                      <input type="text" class="form-control" id="building" placeholder="Building"
+                        [(ngModel)]="organization.building">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-sm-4">
+                      <label for="postal-code">Room No</label>
+                      <input type="text" class="form-control" id="room-no" placeholder="Room no"
+                        [(ngModel)]="organization.roomNo">
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label for="postal-code">Floor No</label>
+                      <input type="text" class="form-control" id="floor-no" placeholder="Floor no"
+                        [(ngModel)]="organization.floorNo">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-sm-4">
+                      <label for="postal-code">Village</label>
+                      <input type="text" class="form-control" id="village" placeholder="Village"
+                        [(ngModel)]="organization.village">
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label for="postal-code">Lane</label>
+                      <input type="text" class="form-control" id="lena" placeholder="Lane"
+                        [(ngModel)]="organization.lane">
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label for="postal-code">Street</label>
+                      <input type="text" class="form-control" id="street" placeholder="Street"
+                        [(ngModel)]="organization.street">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-sm-4">
+                      <label for="postal-code">District</label>
+                      <input type="text" class="form-control" id="district" placeholder="district"
+                        [(ngModel)]="organization.district">
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label for="postal-code">Amphur</label>
+                      <input type="text" class="form-control" id="amphur" placeholder="Amphur"
+                        [(ngModel)]="organization.amphur">
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label for="postal-code">Province</label>
+                      <input type="text" class="form-control" id="province" placeholder="Province"
+                        [(ngModel)]="organization.province">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-sm-4">
+                      <label for="country">Country</label>
+                      <input type="text" class="form-control" id="country" placeholder="Country name"
+                        [(ngModel)]="organization.country">
+                    </div>
+                    <div class="form-group  col-sm-4">
+                      <label for="country">Post code</label>
+                      <input type="text" class="form-control" id="postcode" placeholder="postcode"
+                        [(ngModel)]="organization.postalCode">
+                    </div>
+                  </div>
+                </tab>
+              </tabset>
             </div>
-            <div class="form-group col-sm-4">
-              <label for="postal-code">Postal Code</label>
-              <input type="text" class="form-control" id="postal-code" placeholder="Postal Code">
-            </div>
+            <!--/.col-->
           </div>
-          <div class="form-group">
-            <label for="country">Country</label>
-            <input type="text" class="form-control" id="country" placeholder="Country name">
-          </div>
+          <!--/.row-->
+
         </div>
       </div>
     </div>

@@ -18,6 +18,8 @@ import { LoginComponent } from './views/login/login.component';
 import { OrganizationModule } from './views/organization/organization.module';
 import { SetupModule } from './views/setup/setup.module';
 
+// Import 3rd party components
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
