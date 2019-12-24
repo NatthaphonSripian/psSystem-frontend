@@ -42,5 +42,5 @@ export const API_URL = {
   ORGANIZATION_GET_ALL: `${BASE_URL}/api/organization/all`,
   ORGANIZATION_GET_BY_ID: `${BASE_URL}/api/organization/`,
   ORGANIZATION_SAVE: `${BASE_URL}/api/organization/save`,
-  ORGANIZATION_DELETE: `${BASE_URL}/api/organization/delete`,
+  ORGANIZATION_DELETE: `${BASE_URL}/api/organization/delete/`,
 };
