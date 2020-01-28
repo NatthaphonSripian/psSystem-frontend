@@ -40,12 +40,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngIf="empListFiltered.length == 0">
+                <tr *ngIf="employeeListFiltered.length == 0">
                   <td class="text-center" colspan="100">
                     No data available in table
                   </td>
                 </tr>
-                <tr *ngFor="let employee of empListFiltered; let i = index">
+                <tr *ngFor="let employee of employeeListFiltered; let i = index">
                   <td class="pl-4 checkbox align-middle">
                     <label>
                       {{ employee.id }}
@@ -63,21 +63,23 @@
                   </td>
                   <td class="pl-4 checkbox align-middle">
                     <label>
-                      {{ employee.employeeEmployments.position.name }}
+                      <!-- {{ employee.employeeEmployments(0).position.name }} -->
                     </label>
                   </td>
                   <td class="pl-4 checkbox align-middle">
                     <label>
-                      {{ employee.employeeEmployments.department.name }}
+                      <!-- {{ employee.employeeEmployments[0].department.name }} -->
                     </label>
                   </td>
                   <td>
                     <div class="col-12">
-                      <button type="button" (click)=updateEmployee(employee.id) class="btn btn-warning" id="btn-edit-bank">
+                      <button type="button" (click)=updateEmployee(employee.id) class="btn btn-warning"
+                        id="btn-edit-bank">
                         <i class="fa fa-edit"></i>
                       </button>
                       &nbsp;
-                      <button type="button" (click)=deleteEmployee(employee.id) class="btn btn-danger" id="btn-edit-bank">
+                      <button type="button" (click)=deleteEmployee(employee.id) class="btn btn-danger"
+                        id="btn-edit-bank">
                         <i class="fa fa-trash"></i>
                       </button>
                     </div>
