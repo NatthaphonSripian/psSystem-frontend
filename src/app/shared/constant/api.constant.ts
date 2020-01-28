@@ -1,4 +1,5 @@
 ﻿const BASE_URL = `http://35.240.136.80:8082`;
+// const BASE_URL = `http://localhost:8082`;
 
 export const API_URL = {
   // Bank
@@ -37,10 +38,15 @@ export const API_URL = {
   EMPLOYEE_LEVEL_SAVE: `${BASE_URL}/api/employee/level/save`,
   EMPLOYEE_LEVEL_DELETE: `${BASE_URL}/api/employee/level/delete/`,
 
-
   // Organization
   ORGANIZATION_GET_ALL: `${BASE_URL}/api/organization/all`,
   ORGANIZATION_GET_BY_ID: `${BASE_URL}/api/organization/`,
   ORGANIZATION_SAVE: `${BASE_URL}/api/organization/save`,
   ORGANIZATION_DELETE: `${BASE_URL}/api/organization/delete/`,
+
+  // Employee
+  EMPLOYEE_GET_ALL: `${BASE_URL}/api/employee/all`,
+  EMPLOYEE_GET_BY_ID: `${BASE_URL}/api/employee/`,
+  EMPLOYEE_SAVE: `${BASE_URL}/api/employee/save`,
+  EMPLOYEE_DELETE: `${BASE_URL}/api/employee/delete/`
 };

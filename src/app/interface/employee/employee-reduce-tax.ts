@@ -1,0 +1,29 @@
+export interface EmployeeReduceTax {
+  id: number;
+  spouseDivide: string;
+  spouseReduce: string;
+  child: number;
+  childNotStudy: number;
+  insuranceAmount: number;
+  spouseInsuranceAmount: number;
+  donationCharity: number;
+  donationEducation: number;
+  interestLoan: number;
+  rmfDeposit: number;
+  ltfDeposit: number;
+  compensationLaw: number;
+  gpfDeposit: number;
+  assistInstructor: number;
+  fatherIdCardNo: number;
+  fatherReduceAmount: number;
+  motherIdCardNo: number;
+  motherReduceAmount: number;
+  fatherHealthInsurance: number;
+  motherHealthInsurance: number;
+  longInsurance: number;
+  isTwoBenefits: boolean;
+  createdBy?: string;
+  createdDate?: Date;
+  editBy?: string;
+  editDate?: Date;
+}

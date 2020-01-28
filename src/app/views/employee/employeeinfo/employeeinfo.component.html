@@ -1,0 +1,216 @@
+      <!-- Nav tabs -->
+      <!-- General
+      สถานะภาพส่วนตัว
+    การว่าจ้าง
+  การจ่ายเงิน
+ต่าลดหย่อนภาษี
+ประกันสังคม
+ -->
+      <tabset>
+        <tab heading="General">
+          <div class="row">
+            <div class="col-2">
+              <label for="company">Titel Name</label>
+              <select id="titel-name" name="titel-name-input" class="form-control">
+                <option value="0">Miss</option>
+                <option value="1">Mrs</option>
+                <option value="2">Mr</option>
+              </select>
+            </div>
+            <div class="col-4">
+              <label for="company">First Name</label>
+              <input type="text" class="form-control" id="first-name-input" placeholder="Enter your first name">
+            </div>
+            <div class="col-4">
+              <label for="company">Last Name</label>
+              <input type="text" class="form-control" id="last-name-input" placeholder="Enter your last name">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-2">
+              <label for="company">Gender</label>
+              <div class="col col-form-label">
+                <div class="form-check form-check-inline mr-1" id="gender-radios">
+                  <input class="form-check-input" type="radio" name="gender-radios" id="gender-radios-male"
+                    value="option1">
+                  <label class="form-check-label" for="gender-radios-male">male</label>
+                </div>
+                <div class="form-check form-check-inline mr-1">
+                  <input class="form-check-input" type="radio" name="gender-radios" id="gender-radios-female"
+                    value="option2">
+                  <label class="form-check-label" for="gender-radios-female">female</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <label for="company">Weight</label>
+              <input type="text" class="form-control" id="weight-input" placeholder="Enter your height">
+            </div>
+            <div class="col-4">
+              <label for="company">Height</label>
+              <input type="text" class="form-control" id="height-input" placeholder="Enter your height">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-2">
+              <label for="birthday">Birthday</label>
+              <input class="form-control" id="birthday-input" type="date" name="birthday-input" placeholder="date">
+            </div>
+            <div class="col-3">
+              <label for="birthday">Nationality</label>
+              <input class="form-control" id="nationality-input" type="text" name="nationality-input"
+                placeholder="nationality">
+            </div>
+            <div class="col-3">
+              <label for="birthday">Ethnicity </label>
+              <input class="form-control" id="ethnicity-input" type="text" name="ethnicity-input"
+                placeholder="ethnicity">
+            </div>
+            <div class="col-3">
+              <label for="birthday">Religion</label>
+              <input class="form-control" id="religion-input" type="text" name="religion-input" placeholder="religion">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-4">
+              <label for="id-card-input">ID - Card</label>
+              <input type="text" name="id-card-input" id="id-card-input" class="form-control" placeholder="ID Card">
+            </div>
+            <div class="col-4">
+              <label for="company">Marital Status</label>
+              <div class="col col-form-label">
+                <div class="form-check form-check-inline mr-1" id="marry-radios">
+                  <input class="form-check-input" type="radio" name="marry-radios" id="marry-radios-single"
+                    value="option1">
+                  <label class="form-check-label" for="marry-radios-single">Single</label>
+                </div>
+                <div class="form-check form-check-inline mr-1">
+                  <input class="form-check-input" type="radio" name="marry-radios" id="marry-radios-married"
+                    value="option2">
+                  <label class="form-check-label" for="marry-radios-married">Married</label>
+                </div>
+                <div class="form-check form-check-inline mr-1">
+                  <input class="form-check-input" type="radio" name="marry-radios" id="marry-radios-separated"
+                    value="option2">
+                  <label class="form-check-label" for="marry-radios-separated">Separated</label>
+                </div>
+                <div class="form-check form-check-inline mr-1">
+                  <input class="form-check-input" type="radio" name="marry-radios" id="marry-radios-widowed"
+                    value="option2">
+                  <label class="form-check-label" for="marry-radios-widowed">Widowed</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <label for="company">Military Status</label>
+              <div class="col col-form-label">
+                <div class="form-check form-check-inline mr-1" id="military-radios">
+                  <input class="form-check-input" type="radio" name="military-radios" id="military-radios-serving"
+                    value="option1">
+                  <label class="form-check-label" for="military-radios-serving">Serving</label>
+                </div>
+                <div class="form-check form-check-inline mr-1">
+                  <input class="form-check-input" type="radio" name="military-radios" id="military-radios-completed"
+                    value="option2">
+                  <label class="form-check-label" for="military-radios-completed">completed</label>
+                </div>
+                <div class="form-check form-check-inline mr-1">
+                  <input class="form-check-input" type="radio" name="military-radios" id="military-radios-exempted"
+                    value="option2">
+                  <label class="form-check-label" for="military-radios-exempted">Exempted</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Personal status">
+
+        </tab>
+        <tab heading="Employment">
+
+        </tab>
+        <tab heading="Payment">
+
+        </tab>
+        <tab heading="Tax deduction">
+
+        </tab>
+        <tab heading="Social security">
+
+        </tab>
+        <tab>
+          <ng-template tabHeading><i class="icon-pie-chart"></i> Address</ng-template>
+          <div class="row">
+            <div class="form-group col-sm-8">
+              <label for="city">Address</label>
+              <input type="text" class="form-control" id="address" placeholder="Enter your address">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label for="postal-code">Address No</label>
+              <input type="text" class="form-control" id="address-no" placeholder="Address no">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="postal-code">Group No</label>
+              <input type="text" class="form-control" id="group-no" placeholder="Group no">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="postal-code">Building</label>
+              <input type="text" class="form-control" id="building" placeholder="Building">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label for="postal-code">Room No</label>
+              <input type="text" class="form-control" id="room-no" placeholder="Room no">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="postal-code">Floor No</label>
+              <input type="text" class="form-control" id="floor-no" placeholder="Floor no">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label for="postal-code">Village</label>
+              <input type="text" class="form-control" id="village" placeholder="Village">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="postal-code">Lane</label>
+              <input type="text" class="form-control" id="lena" placeholder="Lane">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="postal-code">Street</label>
+              <input type="text" class="form-control" id="street" placeholder="Street">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label for="postal-code">District</label>
+              <input type="text" class="form-control" id="district" placeholder="district">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="postal-code">Amphur</label>
+              <input type="text" class="form-control" id="amphur" placeholder="Amphur">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="postal-code">Province</label>
+              <input type="text" class="form-control" id="province" placeholder="Province">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label for="country">Country</label>
+              <input type="text" class="form-control" id="country" placeholder="Country name">
+            </div>
+            <div class="form-group  col-sm-4">
+              <label for="country">Post code</label>
+              <input type="text" class="form-control" id="postcode" placeholder="postcode">
+            </div>
+          </div>
+        </tab>
+
+      </tabset>

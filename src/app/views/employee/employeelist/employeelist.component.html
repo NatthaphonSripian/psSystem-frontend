@@ -1,0 +1,93 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col col-md">
+      <div class="card">
+        <div class="card-header">
+          <div class="col-8 float-left text-left">
+            <h4>Employee List</h4>
+          </div>
+
+          <div class="col-4 float-right text-right">
+            <a [routerLink]="['/employee/employeeinfo']" id="link-new-bank">
+              <button type="button" class="btn btn-info active" id="btn-new-employee">
+                New Employee
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-responsive-sm table-bordered table-striped table-sm"
+              aria-describedby="Table Bank Order">
+              <thead>
+                <tr>
+                  <th id="sort-bank-do" class="text-center sort-cursor"></th>
+                  <th id="sort-bank-code" class="text-center">
+                    Employee code
+                  </th>
+                  <th id="sort-bank-code" class="text-center">
+                    Employee name
+                  </th>
+                  <th id="sort-bank-code" class="text-center">
+                    Employee position
+                  </th>
+                  <th id="sort-bank-code" class="text-center">
+                    Employee department
+                  </th>
+                  <th id="action" class="text-center">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="empListFiltered.length == 0">
+                  <td class="text-center" colspan="100">
+                    No data available in table
+                  </td>
+                </tr>
+                <tr *ngFor="let employee of empListFiltered; let i = index">
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ employee.id }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ employee.employeeCode }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ employee.titleName + employee.firstName + employee.lastName }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ employee.employeeEmployments.position.name }}
+                    </label>
+                  </td>
+                  <td class="pl-4 checkbox align-middle">
+                    <label>
+                      {{ employee.employeeEmployments.department.name }}
+                    </label>
+                  </td>
+                  <td>
+                    <div class="col-12">
+                      <button type="button" (click)=updateEmployee(employee.id) class="btn btn-warning" id="btn-edit-bank">
+                        <i class="fa fa-edit"></i>
+                      </button>
+                      &nbsp;
+                      <button type="button" (click)=deleteEmployee(employee.id) class="btn btn-danger" id="btn-edit-bank">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

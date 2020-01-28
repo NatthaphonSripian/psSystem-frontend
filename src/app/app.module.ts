@@ -12,6 +12,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultLayoutComponent } from './containers';
+import { EmployeeModule } from './views/employee/employee.module';
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
@@ -40,6 +41,7 @@ const APP_CONTAINERS = [DefaultLayoutComponent];
   imports: [
     OrganizationModule,
     SetupModule,
+    EmployeeModule,
     BrowserModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({ positionClass: "toast-bottom-right" }),
