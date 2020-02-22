@@ -34,11 +34,13 @@
                 </div>
                 <div class="col-4">
                   <label for="company">First Name</label>
-                  <input type="text" class="form-control" id="first-name-input" placeholder="Enter your first name">
+                  <input type="text" class="form-control" id="first-name-input" placeholder="Enter your first name"
+                    [(ngModel)]="employee.firstName">
                 </div>
                 <div class="col-4">
                   <label for="company">Last Name</label>
-                  <input type="text" class="form-control" id="last-name-input" placeholder="Enter your last name">
+                  <input type="text" class="form-control" id="last-name-input" placeholder="Enter your last name"
+                    [(ngModel)]="employee.lastName">
                 </div>
               </div>
               <br>
@@ -60,23 +62,26 @@
                 </div>
                 <div class="col-4">
                   <label for="company">Weight</label>
-                  <input type="number" class="form-control" id="weight-input" placeholder="Enter your height">
+                  <input type="number" class="form-control" id="weight-input" placeholder="Enter your height"
+                    [(ngModel)]="employee.weight">
                 </div>
                 <div class="col-4">
                   <label for="company">Height</label>
-                  <input type="number" class="form-control" id="height-input" placeholder="Enter your height">
+                  <input type="number" class="form-control" id="height-input" placeholder="Enter your height"
+                    [(ngModel)]="employee.height">
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="col-2">
                   <label for="birthday">Birthday</label>
-                  <input class="form-control" id="birthday-input" type="date" name="birthday-input" placeholder="date">
+                  <input class="form-control" id="birthday-input" type="date" name="birthday-input" placeholder="date"
+                    [(ngModel)]="employee.birthDate">
                 </div>
                 <div class="col-3">
                   <label for="birthday">Nationality</label>
                   <input class="form-control" id="nationality-input" type="text" name="nationality-input"
-                    placeholder="nationality">
+                    placeholder="nationality" [(ngModel)]="employee.firstName">
                 </div>
                 <div class="col-3">
                   <label for="birthday">Ethnicity </label>
