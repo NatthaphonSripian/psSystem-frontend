@@ -7,7 +7,7 @@ import { navItems } from '../../_nav';
   templateUrl: "./default-layout.component.html"
 })
 export class DefaultLayoutComponent {
-  public sidebarMinimized = false;
+  public sidebarMinimized = true;
   public navItems = navItems;
 
   toggleMinimize(e) {

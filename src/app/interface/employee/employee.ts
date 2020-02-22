@@ -7,6 +7,8 @@ import { EmployeeFund } from './employee-fund';
 import { EmployeeGuarantee } from './employee-guarantee';
 import { EmployeeReduceTax } from './employee-reduce-tax';
 import { EmployeeSocial } from './employee-social';
+import { EmployeeGroup } from '../setup/employee-group';
+import { EmployeeLevel } from '../setup/employee-level';
 
 export interface Employee {
   id: number;
@@ -37,4 +39,6 @@ export interface Employee {
   employeeEmployments?: EmployeeEmployment[];
   employeeReduceTax?: EmployeeReduceTax;
   employeeSocial?: EmployeeSocial;
+  employeeGroup: EmployeeGroup;
+  employeeLevel: EmployeeLevel;
 }

@@ -147,21 +147,229 @@
                 </div>
               </div>
             </tab>
-            <tab heading="Personal status">
 
-            </tab>
             <tab heading="Employment">
 
+              <div class="row">
+                <div class="form-group col-4">
+                  <label>Strat Date</label>
+                  <input class="form-control" type="date" id="start-date-work">
+                </div>
+                <div class="form-group col-4">
+                  <label>year’s experience</label>
+                  <input class="form-control" type="text" id="work-age">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-4">
+                  <label for="city">Employee Group</label>
+                  <input type="text" class="form-control" id="employee-group" placeholder="">
+                </div>
+                <div class="form-group col-4">
+                  <label for="city">Employee Level</label>
+                  <input type="text" class="form-control" id="employee-level" placeholder="">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-4">
+                  <label for="city">Position</label>
+                  <input type="text" class="form-control" id="position" placeholder="">
+                </div>
+                <div class="form-group col-4">
+                  <label for="city">Department</label>
+                  <input type="text" class="form-control" id="department" placeholder="">
+                </div>
+                <div class="form-group col-4">
+                  <label>Employee Type</label>
+                  <input type="text" class="form-control" id="employee-type" placeholder="">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-4">
+                  <label>Salary</label>
+                  <input class="form-control text-right" type="text" id="salary-input" placeholder="999,999.00">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-6">
+                <table class="table">
+                  <thead>
+                    <th>Income Name</th>
+                    <th>Total</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        Position
+                      </td>
+                      <td class="text-right">
+                        5,000.00
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="form-group col-6">
+                <table class="table">
+                  <thead>
+                    <th>Deduct Name</th>
+                    <th>Total</th>
+                  </thead>
+                </table>
+              </div>
+              </div>
             </tab>
-            <tab heading="Payment">
+
+            <tab heading="Tax reduction">
+              <div class="row">
+                <div class="col-4">
+                  <label for="company">เงินได้</label>
+                  <div class="col col-form-label">
+                    <div class="form-check form-check-inline mr-1" id="military-radios">
+                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-serving"
+                        value="option1">
+                      <label class="form-check-label" for="military-radios-serving">เงินได้ฝ่ายเดียว</label>
+                    </div>
+                    <div class="form-check form-check-inline mr-1">
+                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-completed"
+                        value="option2">
+                      <label class="form-check-label" for="military-radios-completed">เงินได้สองฝ่าย</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <label for="company">ลดหย่อนคู่สมรส</label>
+                  <div class="col col-form-label">
+                    <div class="form-check form-check-inline mr-1" id="military-radios">
+                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-serving"
+                        value="option1">
+                      <label class="form-check-label" for="military-radios-serving">หัก</label>
+                    </div>
+                    <div class="form-check form-check-inline mr-1">
+                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-completed"
+                        value="option2">
+                      <label class="form-check-label" for="military-radios-completed">ไม่หัก</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <label for="company">ประเภทการยื่นภาษี</label>
+                  <div class="col col-form-label">
+                    <div class="form-check form-check-inline mr-1" id="military-radios">
+                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-serving"
+                        value="option1">
+                      <label class="form-check-label" for="military-radios-serving">แยกยื่น</label>
+                    </div>
+                    <div class="form-check form-check-inline mr-1">
+                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-completed"
+                        value="option2">
+                      <label class="form-check-label" for="military-radios-completed">ยื่นรวม</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-4">
+                  <label for="company">ลดหย่อนบุตร</label>
+                  <div class="col col-form-label">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <label for="company">ค่าฝากครรรภ์และค่าคลอดบุตร</label>
+                  <div class="col col-form-label">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-4">
+                  <label for="company">เงินสะสม กบข</label>
+                  <div class="col col-form-label">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <label for="company">เงินชดเชยที่ได้รับตามกฏหมาย</label>
+                  <div class="col col-form-label">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <label for="company">เงินสะสมกองทุนสงเคราะห์ครูโรงเรียนเอกชน</label>
+                  <input class="form-control" type="text">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-4">
+                  <label>กองทุนเพื่อการเลี้ยงชีพ</label>
+                  <div class="col col-form-label">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <label>กองทุนรวมหุ้นระยะยาว</label>
+                  <div class="col col-form-label">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <label>เบี้ยประกันชีวิต</label>
+                  <div class="col col-form-label">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <label>เบี้ยประกันสุขภาพ</label>
+                  <div class="col col-form-label">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <label>เบี้ยประกันชีวิตแบบบำนาญ</label>
+                  <div class="col col-form-label">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <label>เงินสนับสนุนการกีฬา</label>
+                  <div class="col col-form-label">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <label>เงินสนับสนุนการศึกษา</label>
+                  <div class="col col-form-label">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <label>เงินบริจาคให้สถานพยาบาลของรัฐ</label>
+                  <div class="col col-form-label">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <label>ดอกเบี้ยเงินกู้เพื่อที่อาศัย</label>
+                  <div class="col col-form-label">
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+              </div>
 
             </tab>
-            <tab heading="Tax deduction">
 
-            </tab>
-            <tab heading="Social security">
-
-            </tab>
             <tab>
               <ng-template tabHeading><i class="icon-pie-chart"></i> Address</ng-template>
               <div class="row">
@@ -230,6 +438,39 @@
                 <div class="form-group  col-sm-4">
                   <label for="country">Post code</label>
                   <input type="text" class="form-control" id="postcode" placeholder="postcode">
+                </div>
+              </div>
+            </tab>
+
+            <tab heading="Education">
+              <div class="row">
+                <div class="form-group col-12">
+                  <table class="table">
+                    <thead>
+                      <th>no.</th>
+                      <th>name</th>
+                      <th>institution</th>
+                      <th>qualification</th>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+            </tab>
+
+            <tab heading="Experience">
+              <div class="row">
+                <div class="form-group col-12">
+                  <table class="table">
+                    <thead>
+                      <th>no.</th>
+                      <th>organizationName</th>
+                      <th>businessType</th>
+                      <th>position</th>
+                      <th>workCategory</th>
+                      <th>startDate</th>
+                      <th>endDate</th>
+                    </thead>
+                  </table>
                 </div>
               </div>
             </tab>

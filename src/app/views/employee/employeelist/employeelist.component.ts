@@ -25,7 +25,7 @@ export class EmployeelistComponent implements OnInit {
   reloadDataemployee() {
     this.serviceEmployee.employeeGetAll().subscribe((res: Employee[]) => {
       this.employeeListData = res;
-
+      console.log(this.employeeListData);
       if (this.employeeListData.length > 0) {
         this.employeeListFiltered = this.employeeListData;
       } else {

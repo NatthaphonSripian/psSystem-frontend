@@ -25,6 +25,16 @@ export const navItems: INavData[] = [
         name: "Employee",
         url: "/employee/employeelist",
         icon: "icon-puzzle"
+      },
+      {
+        name: "Promote",
+        url: "/employee/promotelist",
+        icon: "icon-puzzle"
+      },
+      {
+        name: "Resign",
+        url: "/employee/resignlist",
+        icon: "icon-puzzle"
       }
     ]
   },

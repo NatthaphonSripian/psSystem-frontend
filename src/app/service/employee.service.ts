@@ -46,7 +46,7 @@ export class EmployeeService {
       .post<Employee>(`${API_URL.EMPLOYEE_SAVE}`, employee, {
         headers: this.getHeaders()
       })
-      .pipe(map(res => res, this.showToaster("Save data success", "Fund")));
+      .pipe(map(res => res, this.showToaster("Save data success", "Employee")));
   }
 
   public employeeDeleteById(id: number): Observable<any> {

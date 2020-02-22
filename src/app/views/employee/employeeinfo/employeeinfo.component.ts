@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from 'src/app/service/employee.service';
 
 import { Employee } from './../../../interface/employee/employee';
+import { EmployeeGroup, EmployeeLevel } from 'src/app/interface';
 
 @Component({
   selector: "app-employeeinfo",
@@ -18,6 +19,8 @@ export class EmployeeinfoComponent implements OnInit {
     private servieEmployee: EmployeeService
   ) {
     this.employee = { id: null } as Employee;
+    this.employee.employeeGroup = { id: 36 } as EmployeeGroup;
+    this.employee.employeeLevel = { id: 39 } as EmployeeLevel;
   }
 
   ngOnInit() {
