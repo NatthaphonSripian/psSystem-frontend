@@ -81,24 +81,25 @@
                 <div class="col-3">
                   <label for="birthday">Nationality</label>
                   <input class="form-control" id="nationality-input" type="text" name="nationality-input"
-                    placeholder="nationality" [(ngModel)]="employee.firstName">
+                    placeholder="nationality" [(ngModel)]="employee.nationality">
                 </div>
                 <div class="col-3">
-                  <label for="birthday">Ethnicity </label>
-                  <input class="form-control" id="ethnicity-input" type="text" name="ethnicity-input"
-                    placeholder="ethnicity">
+                  <label for="nationalism">Nationalism </label>
+                  <input class="form-control" id="nationalism-input" type="text" name="nationalism-input"
+                    placeholder="nationalism" [(ngModel)]="employee.nationalism">
                 </div>
                 <div class="col-3">
                   <label for="birthday">Religion</label>
                   <input class="form-control" id="religion-input" type="text" name="religion-input"
-                    placeholder="religion">
+                    placeholder="religion" [(ngModel)]="employee.religion">
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="col-4">
                   <label for="id-card-input">ID - Card</label>
-                  <input type="text" name="id-card-input" id="id-card-input" class="form-control" placeholder="ID Card">
+                  <input type="text" name="id-card-input" id="id-card-input" class="form-control" placeholder="ID Card"
+                    [(ngModel)]="employee.idCard">
                 </div>
                 <div class="col-4">
                   <label for="company">Marital Status</label>
@@ -163,12 +164,32 @@
 
               <div class="row">
                 <div class="form-group col-4">
-                  <label for="city">Employee Group</label>
-                  <input type="text" class="form-control" id="employee-group" placeholder="">
+                  <label for="employee-group">Employee Group</label>
+                  <div class="" dropdown>
+                    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                      {{displayEmployeeGroup}} <span class="caret"></span>
+                    </button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu">
+                      <li *ngFor="let employeeGroup of employeeGroupListData" role="menuitem">
+                        <a class="dropdown-item" (click)="onSelectEmployeeGroup(employeeGroup)">
+                          {{employeeGroup.employeeGroupNameEn}}</a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
                 <div class="form-group col-4">
-                  <label for="city">Employee Level</label>
-                  <input type="text" class="form-control" id="employee-level" placeholder="">
+                  <label for="employee-level">Employee Level</label>
+                  <div class="" dropdown>
+                    <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                      Employee Level <span class="caret"></span>
+                    </button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu">
+                      <li *ngFor="let employeeLevel of employeeLevelListData" role="menuitem">
+                        <a class="dropdown-item" (click)="onSelectEmployeeLevel(employeeLevel)">
+                          {{employeeLevel.employeeLevelNameEn}}</a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
@@ -196,31 +217,31 @@
 
               <div class="row">
                 <div class="form-group col-6">
-                <table class="table">
-                  <thead>
-                    <th>Income Name</th>
-                    <th>Total</th>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        Position
-                      </td>
-                      <td class="text-right">
-                        5,000.00
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="form-group col-6">
-                <table class="table">
-                  <thead>
-                    <th>Deduct Name</th>
-                    <th>Total</th>
-                  </thead>
-                </table>
-              </div>
+                  <table class="table">
+                    <thead>
+                      <th>Income Name</th>
+                      <th>Total</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          Position
+                        </td>
+                        <td class="text-right">
+                          5,000.00
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="form-group col-6">
+                  <table class="table">
+                    <thead>
+                      <th>Deduct Name</th>
+                      <th>Total</th>
+                    </thead>
+                  </table>
+                </div>
               </div>
             </tab>
 
@@ -375,69 +396,83 @@
               <div class="row">
                 <div class="form-group col-sm-8">
                   <label for="city">Address</label>
-                  <input type="text" class="form-control" id="address" placeholder="Enter your address">
+                  <input type="text" class="form-control" id="address" placeholder="Enter your address"
+                    [(ngModel)]="employee.addresses.addressName">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Address No</label>
-                  <input type="text" class="form-control" id="address-no" placeholder="Address no">
+                  <input type="text" class="form-control" id="address-no" placeholder="Address no"
+                    [(ngModel)]="employee.addresses.addressNo">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Group No</label>
-                  <input type="text" class="form-control" id="group-no" placeholder="Group no">
+                  <input type="text" class="form-control" id="group-no" placeholder="Group no"
+                    [(ngModel)]="employee.addresses.groupNo">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Building</label>
-                  <input type="text" class="form-control" id="building" placeholder="Building">
+                  <input type="text" class="form-control" id="building" placeholder="Building"
+                    [(ngModel)]="employee.addresses.building">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Room No</label>
-                  <input type="text" class="form-control" id="room-no" placeholder="Room no">
+                  <input type="text" class="form-control" id="room-no" placeholder="Room no"
+                    [(ngModel)]="employee.addresses.roomNo">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Floor No</label>
-                  <input type="text" class="form-control" id="floor-no" placeholder="Floor no">
+                  <input type="text" class="form-control" id="floor-no" placeholder="Floor no"
+                    [(ngModel)]="employee.addresses.floorNo">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Village</label>
-                  <input type="text" class="form-control" id="village" placeholder="Village">
+                  <input type="text" class="form-control" id="village" placeholder="Village"
+                    [(ngModel)]="employee.addresses.village">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Lane</label>
-                  <input type="text" class="form-control" id="lena" placeholder="Lane">
+                  <input type="text" class="form-control" id="lena" placeholder="Lane"
+                    [(ngModel)]="employee.addresses.lane">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Street</label>
-                  <input type="text" class="form-control" id="street" placeholder="Street">
+                  <input type="text" class="form-control" id="street" placeholder="Street"
+                    [(ngModel)]="employee.addresses.street">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-sm-4">
                   <label for="postal-code">District</label>
-                  <input type="text" class="form-control" id="district" placeholder="district">
+                  <input type="text" class="form-control" id="district" placeholder="district"
+                    [(ngModel)]="employee.addresses.district">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Amphur</label>
-                  <input type="text" class="form-control" id="amphur" placeholder="Amphur">
+                  <input type="text" class="form-control" id="amphur" placeholder="Amphur"
+                    [(ngModel)]="employee.addresses.amphur">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Province</label>
-                  <input type="text" class="form-control" id="province" placeholder="Province">
+                  <input type="text" class="form-control" id="province" placeholder="Province"
+                    [(ngModel)]="employee.addresses.province">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-sm-4">
                   <label for="country">Country</label>
-                  <input type="text" class="form-control" id="country" placeholder="Country name">
+                  <input type="text" class="form-control" id="country" placeholder="Country name"
+                    [(ngModel)]="employee.addresses.country">
                 </div>
                 <div class="form-group  col-sm-4">
                   <label for="country">Post code</label>
-                  <input type="text" class="form-control" id="postcode" placeholder="postcode">
+                  <input type="text" class="form-control" id="postcode" placeholder="postcode"
+                    [(ngModel)]="employee.addresses.postalCode">
                 </div>
               </div>
             </tab>

@@ -1,3 +1,5 @@
+import { EmployeeGroup } from '../setup/employee-group';
+import { EmployeeLevel } from '../setup/employee-level';
 import { Address } from './../setup/address';
 import { EmployeeContract } from './employee-contract';
 import { EmployeeEducation } from './employee-education';
@@ -7,8 +9,6 @@ import { EmployeeFund } from './employee-fund';
 import { EmployeeGuarantee } from './employee-guarantee';
 import { EmployeeReduceTax } from './employee-reduce-tax';
 import { EmployeeSocial } from './employee-social';
-import { EmployeeGroup } from '../setup/employee-group';
-import { EmployeeLevel } from '../setup/employee-level';
 
 export interface Employee {
   id: number;
@@ -30,7 +30,7 @@ export interface Employee {
   createdDate: Date;
   editBy: string;
   editDate: Date;
-  addresses?: Address[];
+  addresses: Address;
   employeeEducations?: EmployeeEducation[];
   employeeContracts?: EmployeeContract[];
   employeeExperiences?: EmployeeExperience[];

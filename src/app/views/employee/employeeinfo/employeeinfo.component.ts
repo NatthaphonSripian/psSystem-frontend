@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EmployeeGroup, EmployeeLevel } from 'src/app/interface';
 import { EmployeeService } from 'src/app/service/employee.service';
 
 import { Employee } from './../../../interface/employee/employee';
-import { EmployeeGroup, EmployeeLevel } from 'src/app/interface';
+import { Address } from './../../../interface/setup/address';
+import { EmployeeGroupService } from './../../../service/employee-group.service';
+import { EmployeeLevelService } from './../../../service/employee-level.service';
 
 @Component({
   selector: "app-employeeinfo",
@@ -12,18 +15,28 @@ import { EmployeeGroup, EmployeeLevel } from 'src/app/interface';
 })
 export class EmployeeinfoComponent implements OnInit {
   public employee: Employee;
+  public employeeGroupListData: EmployeeGroup[] = [];
+  public employeeLevelListData: EmployeeLevel[] = [];
+  public displayEmployeeGroup: string;
   id: number;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private servieEmployee: EmployeeService
+    private serviceEmployee: EmployeeService,
+    private serviceEmployeeGroup: EmployeeGroupService,
+    private serviceEmployeeLevel: EmployeeLevelService
   ) {
-    this.employee = { id: null } as Employee;
-    this.employee.employeeGroup = { id: 36 } as EmployeeGroup;
-    this.employee.employeeLevel = { id: 39 } as EmployeeLevel;
+    this.employee = {
+      id: null,
+      addresses: { id: null } as Address
+    } as Employee;
   }
 
   ngOnInit() {
+    // Load data setup
+    this.reloadDataEmployeeGroup();
+    this.reloadDataEmployeeLevel();
+
     this.id = this.route.snapshot.params["id"];
     if (this.id) {
       this.onLoadDataEmployee(this.id);
@@ -31,7 +44,7 @@ export class EmployeeinfoComponent implements OnInit {
   }
 
   onLoadDataEmployee(id: number) {
-    this.servieEmployee.employeeGetById(this.id).subscribe(
+    this.serviceEmployee.employeeGetById(this.id).subscribe(
       data => {
         this.employee = data;
       },
@@ -40,8 +53,36 @@ export class EmployeeinfoComponent implements OnInit {
   }
 
   onSave() {
-    this.servieEmployee.employeeSave(this.employee).subscribe(data => {
+    this.serviceEmployee.employeeSave(this.employee).subscribe(data => {
       this.employee = data;
     });
+  }
+
+  reloadDataEmployeeGroup() {
+    this.displayEmployeeGroup = "Employee Group";
+    this.serviceEmployeeGroup
+      .employeeGroupGetAll()
+      .subscribe((res: EmployeeGroup[]) => {
+        this.employeeGroupListData = res;
+      });
+  }
+
+  reloadDataEmployeeLevel() {
+    this.serviceEmployeeLevel
+      .employeeLevelGetAll()
+      .subscribe((res: EmployeeLevel[]) => {
+        this.employeeLevelListData = res;
+      });
+  }
+
+  onSelectEmployeeGroup(employeeGroupTemp: EmployeeGroup) {
+    this.employee.employeeGroup = employeeGroupTemp;
+    this.displayEmployeeGroup = employeeGroupTemp.employeeGroupNameEn;
+    console.log(this.employee);
+  }
+
+  onSelectEmployeeLevel(employeeLevelTemp: EmployeeLevel) {
+    this.employee.employeeLevel = employeeLevelTemp;
+    console.log(this.employee);
   }
 }
