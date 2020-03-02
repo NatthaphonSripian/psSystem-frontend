@@ -1,5 +1,5 @@
-﻿// const BASE_URL = `http://35.240.136.80:8082`;
-const BASE_URL = `http://localhost:8082`;
+﻿const BASE_URL = `http://35.240.136.80:8082`;
+// const BASE_URL = `http://localhost:8082`;
 
 export const API_URL = {
   // Bank

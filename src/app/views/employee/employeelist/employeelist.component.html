@@ -8,7 +8,7 @@
           </div>
 
           <div class="col-4 float-right text-right">
-            <a [routerLink]="['/employee/employeeinfo']" id="link-new-bank">
+            <a [routerLink]="['/employee/employeeinfo']" id="link-new-employee">
               <button type="button" class="btn btn-info active" id="btn-new-employee">
                 New Employee
               </button>
@@ -21,17 +21,17 @@
               aria-describedby="Table Bank Order">
               <thead>
                 <tr>
-                  <th id="sort-bank-do" class="text-center sort-cursor"></th>
-                  <th id="sort-bank-code" class="text-center">
+                  <th id="sort-employee-do" class="text-center sort-cursor"></th>
+                  <th id="sort-employee-code" class="text-center">
                     Employee code
                   </th>
-                  <th id="sort-bank-code" class="text-center">
+                  <th id="sort-employee-code" class="text-center">
                     Employee name
                   </th>
-                  <th id="sort-bank-code" class="text-center">
+                  <th id="sort-employee-code" class="text-center">
                     Employee Level
                   </th>
-                  <th id="sort-bank-code" class="text-center">
+                  <th id="sort-employee-code" class="text-center">
                     Employee Group
                   </th>
                   <th id="action" class="text-center">
@@ -74,12 +74,12 @@
                   <td>
                     <div class="col-12">
                       <button type="button" (click)=updateEmployee(employee.id) class="btn btn-warning"
-                        id="btn-edit-bank">
+                        id="btn-edit-employee">
                         <i class="fa fa-edit"></i>
                       </button>
                       &nbsp;
                       <button type="button" (click)=deleteEmployee(employee.id) class="btn btn-danger"
-                        id="btn-edit-bank">
+                        id="btn-delete-employee">
                         <i class="fa fa-trash"></i>
                       </button>
                     </div>

@@ -18,6 +18,7 @@ export class EmployeeinfoComponent implements OnInit {
   public employeeGroupListData: EmployeeGroup[] = [];
   public employeeLevelListData: EmployeeLevel[] = [];
   public displayEmployeeGroup: string;
+  public displayEmployeeLevel: string;
   id: number;
   constructor(
     private router: Router,
@@ -47,6 +48,8 @@ export class EmployeeinfoComponent implements OnInit {
     this.serviceEmployee.employeeGetById(this.id).subscribe(
       data => {
         this.employee = data;
+        this.displayEmployeeGroup = this.employee.employeeGroup.employeeGroupNameEn;
+        this.displayEmployeeLevel = this.employee.employeeLevel.employeeLevelNameEn;
       },
       error => console.log(error)
     );
@@ -68,6 +71,7 @@ export class EmployeeinfoComponent implements OnInit {
   }
 
   reloadDataEmployeeLevel() {
+    this.displayEmployeeLevel = "Employee Level";
     this.serviceEmployeeLevel
       .employeeLevelGetAll()
       .subscribe((res: EmployeeLevel[]) => {
@@ -78,11 +82,10 @@ export class EmployeeinfoComponent implements OnInit {
   onSelectEmployeeGroup(employeeGroupTemp: EmployeeGroup) {
     this.employee.employeeGroup = employeeGroupTemp;
     this.displayEmployeeGroup = employeeGroupTemp.employeeGroupNameEn;
-    console.log(this.employee);
   }
 
   onSelectEmployeeLevel(employeeLevelTemp: EmployeeLevel) {
     this.employee.employeeLevel = employeeLevelTemp;
-    console.log(this.employee);
+    this.displayEmployeeLevel = employeeLevelTemp.employeeLevelNameEn;
   }
 }

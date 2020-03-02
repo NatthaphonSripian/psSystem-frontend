@@ -181,7 +181,7 @@
                   <label for="employee-level">Employee Level</label>
                   <div class="" dropdown>
                     <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-                      Employee Level <span class="caret"></span>
+                      {{displayEmployeeLevel}} <span class="caret"></span>
                     </button>
                     <ul *dropdownMenu class="dropdown-menu" role="menu">
                       <li *ngFor="let employeeLevel of employeeLevelListData" role="menuitem">
