@@ -4,8 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Department } from './../interface/setup/department';
-import { API_URL } from './../shared/constant/api.constant';
+import { IDepartment } from '../interface/setup/department-interface';
+import { API_URL } from '../shared/constant/api.constant';
 
 @Injectable({
   providedIn: "root"
@@ -25,25 +25,25 @@ export class DepartmentService {
     this.toastr.success(msg, title);
   }
 
-  public departmentGetAll(): Observable<Department[]> {
+  public departmentGetAll(): Observable<IDepartment[]> {
     return this.http
-      .get<Department[]>(`${API_URL.DEPARTMENT_GET_ALL}`, {
+      .get<IDepartment[]>(`${API_URL.DEPARTMENT_GET_ALL}`, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res));
   }
 
-  public departmentGetById(id: number): Observable<Department> {
+  public departmentGetById(id: number): Observable<IDepartment> {
     return this.http
-      .get<Department>(`${API_URL.DEPARTMENT_GET_BY_ID}${id}`, {
+      .get<IDepartment>(`${API_URL.DEPARTMENT_GET_BY_ID}${id}`, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res));
   }
 
-  public departmentSave(bank: Department): Observable<Department> {
+  public departmentSave(bank: IDepartment): Observable<IDepartment> {
     return this.http
-      .post<Department>(`${API_URL.DEPARTMENT_SAVE}`, bank, {
+      .post<IDepartment>(`${API_URL.DEPARTMENT_SAVE}`, bank, {
         headers: this.getHeaders()
       })
       .pipe(

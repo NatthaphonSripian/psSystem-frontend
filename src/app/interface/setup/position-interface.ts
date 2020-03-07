@@ -1,4 +1,4 @@
-export interface Position {
+export interface IPosition {
   id?: number;
   positionCode?: string;
   positionNameTh?: string;

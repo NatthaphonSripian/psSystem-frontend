@@ -1,4 +1,4 @@
-export interface EmployeeLevel {
+export interface IEmployeeLevel {
   id: number;
   employeeLevelCode: string;
   employeeLevelNameTh: string;

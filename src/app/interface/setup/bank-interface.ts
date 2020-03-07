@@ -1,4 +1,4 @@
-export interface Bank {
+export interface IBank {
   id: number;
   bankCode: string;
   bankNameTh: string;

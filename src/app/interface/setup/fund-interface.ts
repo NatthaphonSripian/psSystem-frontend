@@ -1,4 +1,4 @@
-export interface Fund {
+export interface IFund {
   id?: number;
   fundCode?: string;
   fundNameTh?: string;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Bank } from './../../../interface/setup/bank';
+import { IBank } from '../../../interface/setup/bank-interface';
 import { BankService } from './../../../service/bank.service';
 
 @Component({
@@ -10,14 +10,14 @@ import { BankService } from './../../../service/bank.service';
   styleUrls: ["./bank.component.scss"]
 })
 export class BankComponent implements OnInit {
-  public bank: Bank;
+  public bank: IBank;
   id: number;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private servieBank: BankService
   ) {
-    this.bank = { id: null } as Bank;
+    this.bank = { id: null } as IBank;
   }
 
   ngOnInit() {

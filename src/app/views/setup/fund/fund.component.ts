@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Fund } from './../../../interface/setup/fund';
+import { IFund } from '../../../interface/setup/fund-interface';
 import { FundService } from './../../../service/fund.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { FundService } from './../../../service/fund.service';
   styleUrls: ["./fund.component.scss"]
 })
 export class FundComponent implements OnInit {
-  public fund: Fund;
+  public fund: IFund;
   id: number;
 
   constructor(
@@ -18,7 +18,7 @@ export class FundComponent implements OnInit {
     private route: ActivatedRoute,
     private servieFund: FundService
   ) {
-    this.fund = { id: null } as Fund;
+    this.fund = { id: null } as IFund;
   }
 
   ngOnInit() {

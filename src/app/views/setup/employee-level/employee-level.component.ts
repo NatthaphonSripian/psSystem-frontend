@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { EmployeeLevel } from './../../../interface/setup/employee-level';
+import { IEmployeeLevel } from '../../../interface/setup/employee-level-interface';
 import { EmployeeLevelService } from './../../../service/employee-level.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { EmployeeLevelService } from './../../../service/employee-level.service'
   styleUrls: ["./employee-level.component.scss"]
 })
 export class EmployeeLevelComponent implements OnInit {
-  public employeeLevel: EmployeeLevel;
+  public employeeLevel: IEmployeeLevel;
   id: number;
 
   constructor(
@@ -18,7 +18,7 @@ export class EmployeeLevelComponent implements OnInit {
     private route: ActivatedRoute,
     private serviceEmployeeLevel: EmployeeLevelService
   ) {
-    this.employeeLevel = { id: null } as EmployeeLevel;
+    this.employeeLevel = { id: null } as IEmployeeLevel;
   }
 
   ngOnInit() {

@@ -1,9 +1,9 @@
-export interface Department {
+export interface IDepartment {
   id?: number;
   departmentCode?: string;
   departmentNameTh?: string;
   departmentNameEn?: string;
-  parentDepartment?: Department;
+  parentDepartment?: IDepartment;
   createdBy?: string;
   createdDate?: Date;
   editBy?: string;

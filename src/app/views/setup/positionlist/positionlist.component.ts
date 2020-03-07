@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Position } from './../../../interface/setup/position';
+import { IPosition } from '../../../interface/setup/position-interface';
 import { PositionService } from './../../../service/position.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { PositionService } from './../../../service/position.service';
   styleUrls: ["./positionlist.component.scss"]
 })
 export class PositionlistComponent implements OnInit {
-  public positionListData: Position[] = [];
-  public positionListFiltered: Position[] = [];
+  public positionListData: IPosition[] = [];
+  public positionListFiltered: IPosition[] = [];
 
   constructor(
     private servicePosition: PositionService,
@@ -23,7 +23,7 @@ export class PositionlistComponent implements OnInit {
   }
 
   reloadDataposition() {
-    this.servicePosition.positionGetAll().subscribe((res: Position[]) => {
+    this.servicePosition.positionGetAll().subscribe((res: IPosition[]) => {
       this.positionListData = res;
 
       if (this.positionListData.length > 0) {

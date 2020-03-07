@@ -4,8 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Position } from './../interface/setup/position';
-import { API_URL } from './../shared/constant/api.constant';
+import { IPosition } from '../interface/setup/position-interface';
+import { API_URL } from '../shared/constant/api.constant';
 
 @Injectable({
   providedIn: "root"
@@ -25,25 +25,25 @@ export class PositionService {
     this.toastr.success(msg, title);
   }
 
-  public positionGetAll(): Observable<Position[]> {
+  public positionGetAll(): Observable<IPosition[]> {
     return this.http
-      .get<Position[]>(`${API_URL.POSITION_GET_ALL}`, {
+      .get<IPosition[]>(`${API_URL.POSITION_GET_ALL}`, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res));
   }
 
-  public positionGetById(id: number): Observable<Position> {
+  public positionGetById(id: number): Observable<IPosition> {
     return this.http
-      .get<Position>(`${API_URL.POSITION_GET_BY_ID}${id}`, {
+      .get<IPosition>(`${API_URL.POSITION_GET_BY_ID}${id}`, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res));
   }
 
-  public positionSave(fund: Position): Observable<Position> {
+  public positionSave(fund: IPosition): Observable<IPosition> {
     return this.http
-      .post<Position>(`${API_URL.POSITION_SAVE}`, fund, {
+      .post<IPosition>(`${API_URL.POSITION_SAVE}`, fund, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res, this.showToaster("Save data success", "Position")));

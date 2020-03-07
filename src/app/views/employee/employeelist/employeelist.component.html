@@ -1,3 +1,5 @@
+<!-- TODO: Fixed responsive -->
+
 <div class="animated fadeIn">
   <div class="row">
     <div class="col col-md">
@@ -21,12 +23,12 @@
               aria-describedby="Table Bank Order">
               <thead>
                 <tr>
-                  <th id="sort-employee-do" class="text-center sort-cursor"></th>
+                  <th id="sort-employee-do" class="px-1 text-center sort-cursor">ID</th>
                   <th id="sort-employee-code" class="text-center">
-                    Employee code
+                    Employee Code
                   </th>
                   <th id="sort-employee-code" class="text-center">
-                    Employee name
+                    Employee Name
                   </th>
                   <th id="sort-employee-code" class="text-center">
                     Employee Level
@@ -46,35 +48,26 @@
                   </td>
                 </tr>
                 <tr *ngFor="let employee of employeeListFiltered; let i = index">
-                  <td class="pl-4 checkbox align-middle">
-                    <label>
-                      {{ employee.id }}
-                    </label>
+                  <td class="px-0 text-center text-nowrap align-middle">
+                    {{ employee.id }}
                   </td>
-                  <td class="pl-4 checkbox align-middle">
-                    <label>
-                      {{ employee.employeeCode }}
-                    </label>
+                  <td class="pl-4 text-nowrap align-middle">
+                    {{ employee.employeeCode }}
                   </td>
-                  <td class="pl-4 checkbox align-middle">
-                    <label>
-                      {{ employee.titleName + employee.firstName + employee.lastName }}
-                    </label>
+                  <td class="pl-4 text-center align-middle">
+                    {{ employee.displayName}}
                   </td>
-                  <td class="pl-4 checkbox align-middle">
-                    <label>
-                      {{ employee.employeeLevel.employeeLevelNameEn }}
-                    </label>
+                  <td class="pl-4 text-nowrap align-middle">
+                    {{ employee.employeeLevel.employeeLevelNameEn }}
                   </td>
-                  <td class="pl-4 checkbox align-middle">
-                    <label>
-                      {{ employee.employeeGroup.employeeGroupNameEn }}
-                    </label>
+                  <td class="pl-4 text-nowrap align-middle">
+                    {{ employee.employeeGroup.employeeGroupNameEn }}
                   </td>
-                  <td>
-                    <div class="col-12">
+                  <td class="action-width text-center align-middle text-nowrap">
+                    <div class="d-flex d-inline-flex">
                       <button type="button" (click)=updateEmployee(employee.id) class="btn btn-warning"
                         id="btn-edit-employee">
+                        <!-- <fa-icon [icon]="['fa', 'edit']"></fa-icon> -->
                         <i class="fa fa-edit"></i>
                       </button>
                       &nbsp;

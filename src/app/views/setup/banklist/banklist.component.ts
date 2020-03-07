@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { BankService } from '../../../service/bank.service';
-import { Bank } from './../../../interface';
+import { IBank } from './../../../interface';
 
 @Component({
   selector: "app-banklist",
@@ -10,8 +10,8 @@ import { Bank } from './../../../interface';
   styleUrls: ["./banklist.component.scss"]
 })
 export class BanklistComponent implements OnInit {
-  public bankListData: Bank[] = [];
-  public bankListFiltered: Bank[] = [];
+  public bankListData: IBank[] = [];
+  public bankListFiltered: IBank[] = [];
 
   constructor(private serviceBank: BankService, private router: Router) {}
 
@@ -20,7 +20,7 @@ export class BanklistComponent implements OnInit {
   }
 
   reloadDataBank() {
-    this.serviceBank.bankGetAll().subscribe((res: Bank[]) => {
+    this.serviceBank.bankGetAll().subscribe((res: IBank[]) => {
       this.bankListData = res;
 
       if (this.bankListData.length > 0) {

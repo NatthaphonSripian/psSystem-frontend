@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { EmployeeGroup } from './../../../interface/setup/employee-group';
+import { IEmployeeGroup } from '../../../interface/setup/employee-group-interface';
 import { EmployeeGroupService } from './../../../service/employee-group.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { EmployeeGroupService } from './../../../service/employee-group.service'
   styleUrls: ["./employee-group-list.component.scss"]
 })
 export class EmployeeGroupListComponent implements OnInit {
-  public employeeGroupListData: EmployeeGroup[] = [];
-  public employeeGroupListFiltered: EmployeeGroup[] = [];
+  public employeeGroupListData: IEmployeeGroup[] = [];
+  public employeeGroupListFiltered: IEmployeeGroup[] = [];
 
   constructor(
     private serviceEmployeeGroup: EmployeeGroupService,
@@ -24,8 +24,8 @@ export class EmployeeGroupListComponent implements OnInit {
 
   reloadDataEmployeeGroup() {
     this.serviceEmployeeGroup
-      .employeeGroupGetAll()
-      .subscribe((res: EmployeeGroup[]) => {
+      .getEmployeeGroups()
+      .subscribe((res: IEmployeeGroup[]) => {
         this.employeeGroupListData = res;
 
         if (this.employeeGroupListData.length > 0) {
@@ -42,7 +42,7 @@ export class EmployeeGroupListComponent implements OnInit {
 
   deleteEmployeeGroup(id: number) {
     // Delete Data and reload data
-    this.serviceEmployeeGroup.employeeGroupDeleteById(id).subscribe(() => {
+    this.serviceEmployeeGroup.deleteEmployeeGroupById(id).subscribe(() => {
       this.reloadDataEmployeeGroup();
     });
   }

@@ -1,6 +1,6 @@
-import { EmployeeGroup } from '../setup/employee-group';
-import { EmployeeLevel } from '../setup/employee-level';
-import { Address } from './../setup/address';
+import { IAddress } from '../setup/address-interface';
+import { IEmployeeGroup } from '../setup/employee-group-interface';
+import { IEmployeeLevel } from '../setup/employee-level-interface';
 import { EmployeeContract } from './employee-contract';
 import { EmployeeEducation } from './employee-education';
 import { EmployeeEmployment } from './employee-employment';
@@ -10,12 +10,13 @@ import { EmployeeGuarantee } from './employee-guarantee';
 import { EmployeeReduceTax } from './employee-reduce-tax';
 import { EmployeeSocial } from './employee-social';
 
-export interface Employee {
+export interface IEmployee {
   id: number;
   employeeCode: string;
   titleName: string;
   firstName: string;
   lastName: string;
+  displayName: string;
   gender: string;
   weight: number;
   height: number;
@@ -30,7 +31,7 @@ export interface Employee {
   createdDate: Date;
   editBy: string;
   editDate: Date;
-  addresses: Address;
+  addresses: IAddress;
   employeeEducations?: EmployeeEducation[];
   employeeContracts?: EmployeeContract[];
   employeeExperiences?: EmployeeExperience[];
@@ -39,6 +40,6 @@ export interface Employee {
   employeeEmployments?: EmployeeEmployment[];
   employeeReduceTax?: EmployeeReduceTax;
   employeeSocial?: EmployeeSocial;
-  employeeGroup: EmployeeGroup;
-  employeeLevel: EmployeeLevel;
+  employeeGroup: IEmployeeGroup;
+  employeeLevel: IEmployeeLevel;
 }

@@ -4,8 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { EmployeeGroup } from './../interface/setup/employee-group';
-import { API_URL } from './../shared/constant/api.constant';
+import { IEmployeeGroup } from '../interface/setup/employee-group-interface';
+import { API_URL } from '../shared/constant/api.constant';
 
 @Injectable({
   providedIn: "root"
@@ -25,27 +25,27 @@ export class EmployeeGroupService {
     this.toastr.success(msg, title);
   }
 
-  public employeeGroupGetAll(): Observable<EmployeeGroup[]> {
+  public getEmployeeGroups(): Observable<IEmployeeGroup[]> {
     return this.http
-      .get<EmployeeGroup[]>(`${API_URL.EMPLOYEE_GROUP_GET_ALL}`, {
+      .get<IEmployeeGroup[]>(`${API_URL.EMPLOYEE_GROUP_GET_ALL}`, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res));
   }
 
-  public employeeGroupGetById(id: number): Observable<EmployeeGroup> {
+  public getEmployeeGroupById(id: number): Observable<IEmployeeGroup> {
     return this.http
-      .get<EmployeeGroup>(`${API_URL.EMPLOYEE_GROUP_GET_BY_ID}${id}`, {
+      .get<IEmployeeGroup>(`${API_URL.EMPLOYEE_GROUP_GET_BY_ID}${id}`, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res));
   }
 
-  public employeeGroupSave(
-    employeeGroup: EmployeeGroup
-  ): Observable<EmployeeGroup> {
+  public saveEmployeeGroup(
+    employeeGroup: IEmployeeGroup
+  ): Observable<IEmployeeGroup> {
     return this.http
-      .post<EmployeeGroup>(`${API_URL.EMPLOYEE_GROUP_SAVE}`, employeeGroup, {
+      .post<IEmployeeGroup>(`${API_URL.EMPLOYEE_GROUP_SAVE}`, employeeGroup, {
         headers: this.getHeaders()
       })
       .pipe(
@@ -53,7 +53,7 @@ export class EmployeeGroupService {
       );
   }
 
-  public employeeGroupDeleteById(id: number): Observable<any> {
+  public deleteEmployeeGroupById(id: number): Observable<any> {
     return this.http
       .delete(`${API_URL.EMPLOYEE_GROUP_DELETE}${id}`, {
         headers: this.getHeaders()

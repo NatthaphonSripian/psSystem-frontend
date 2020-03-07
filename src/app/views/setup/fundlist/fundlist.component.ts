@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Fund } from './../../../interface/setup/fund';
+import { IFund } from '../../../interface/setup/fund-interface';
 import { FundService } from './../../../service/fund.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { FundService } from './../../../service/fund.service';
   styleUrls: ["./fundlist.component.scss"]
 })
 export class FundlistComponent implements OnInit {
-  public fundListData: Fund[] = [];
-  public fundListFiltered: Fund[] = [];
+  public fundListData: IFund[] = [];
+  public fundListFiltered: IFund[] = [];
 
   constructor(private serviceFund: FundService, private router: Router) {}
 
@@ -20,7 +20,7 @@ export class FundlistComponent implements OnInit {
   }
 
   reloadDataFund() {
-    this.serviceFund.fundGetAll().subscribe((res: Fund[]) => {
+    this.serviceFund.fundGetAll().subscribe((res: IFund[]) => {
       this.fundListData = res;
 
       if (this.fundListData.length > 0) {

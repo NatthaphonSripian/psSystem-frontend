@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { EmployeeGroup } from './../../../interface/setup/employee-group';
+import { IEmployeeGroup } from '../../../interface/setup/employee-group-interface';
 import { EmployeeGroupService } from './../../../service/employee-group.service';
 
 @Component({
@@ -10,15 +10,15 @@ import { EmployeeGroupService } from './../../../service/employee-group.service'
   styleUrls: ["./employee-group.component.scss"]
 })
 export class EmployeeGroupComponent implements OnInit {
-  public employeeGroup: EmployeeGroup;
+  public employeeGroup: IEmployeeGroup;
   id: number;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private serviceEmployeeGroup: EmployeeGroupService
+    private groupService: EmployeeGroupService
   ) {
-    this.employeeGroup = { id: null } as EmployeeGroup;
+    this.employeeGroup = { id: null } as IEmployeeGroup;
   }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class EmployeeGroupComponent implements OnInit {
   }
 
   onLoadDataEmployeeGroup(id: number) {
-    this.serviceEmployeeGroup.employeeGroupGetById(this.id).subscribe(
+    this.groupService.getEmployeeGroupById(this.id).subscribe(
       data => {
         this.employeeGroup = data;
       },
@@ -38,10 +38,8 @@ export class EmployeeGroupComponent implements OnInit {
   }
 
   onSave() {
-    this.serviceEmployeeGroup
-      .employeeGroupSave(this.employeeGroup)
-      .subscribe(data => {
-        this.employeeGroup = data;
-      });
+    this.groupService.saveEmployeeGroup(this.employeeGroup).subscribe(data => {
+      this.employeeGroup = data;
+    });
   }
 }

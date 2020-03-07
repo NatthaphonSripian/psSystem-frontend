@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Department } from './../../../interface/setup/department';
+import { IDepartment } from '../../../interface/setup/department-interface';
 import { DepartmentService } from './../../../service/department.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { DepartmentService } from './../../../service/department.service';
   styleUrls: ["./departmentlist.component.scss"]
 })
 export class DepartmentlistComponent implements OnInit {
-  public departmentListData: Department[] = [];
-  public departmentListFiltered: Department[] = [];
+  public departmentListData: IDepartment[] = [];
+  public departmentListFiltered: IDepartment[] = [];
 
   constructor(
     private serviceDepartment: DepartmentService,
@@ -23,7 +23,7 @@ export class DepartmentlistComponent implements OnInit {
   }
 
   reloadDataDepartment() {
-    this.serviceDepartment.departmentGetAll().subscribe((res: Department[]) => {
+    this.serviceDepartment.departmentGetAll().subscribe((res: IDepartment[]) => {
       this.departmentListData = res;
 
       if (this.departmentListData.length > 0) {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { EmployeeLevel } from './../../../interface/setup/employee-level';
+import { IEmployeeLevel } from '../../../interface/setup/employee-level-interface';
 import { EmployeeLevelService } from './../../../service/employee-level.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { EmployeeLevelService } from './../../../service/employee-level.service'
   styleUrls: ["./employee-level-list.component.scss"]
 })
 export class EmployeeLevelListComponent implements OnInit {
-  public employeeLevelListData: EmployeeLevel[] = [];
-  public employeeLevelListFiltered: EmployeeLevel[] = [];
+  public employeeLevelListData: IEmployeeLevel[] = [];
+  public employeeLevelListFiltered: IEmployeeLevel[] = [];
 
   constructor(
     private serviceEmployeeLevel: EmployeeLevelService,
@@ -24,8 +24,8 @@ export class EmployeeLevelListComponent implements OnInit {
 
   reloadDataEmployeeLevel() {
     this.serviceEmployeeLevel
-      .employeeLevelGetAll()
-      .subscribe((res: EmployeeLevel[]) => {
+      .getEmployeeLevels()
+      .subscribe((res: IEmployeeLevel[]) => {
         this.employeeLevelListData = res;
 
         if (this.employeeLevelListData.length > 0) {

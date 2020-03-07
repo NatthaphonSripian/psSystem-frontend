@@ -3,10 +3,10 @@
     <div class="col col-md">
       <div class="card">
         <div class="card-header">
-          <div class="col-2 float-left text-left">
-            <h3>Employee</h3>
+          <div class="col-6 float-left text-left">
+            <h3>Employee Details</h3>
           </div>
-          <div class="col-2 float-right text-right">
+          <div class="col-6 float-right text-right">
             <a [routerLink]="['/employee/employeelist']" id="link-back-employeelist">
               <button type="button" class="btn btn-info" id="btn-new-distribution">
                 <i class="fa fa-arrow-left"></i>
@@ -20,18 +20,41 @@
             </a>
           </div>
         </div>
+
         <div class="card-body">
           <tabset>
+
+            <!-- General Tab -->
             <tab heading="General">
               <div class="row">
                 <div class="col-2">
-                  <label for="company">Titel Name</label>
-                  <select id="titel-name" name="titel-name-input" class="form-control">
-                    <option value="0">Miss</option>
-                    <option value="1">Mrs</option>
-                    <option value="2">Mr</option>
-                  </select>
+                  <label for="employee-group">Title Name</label>
+                  <div class="" dropdown>
+                    <button dropdownToggle type="button" class="form-control dropdown-toggle">
+                      <label class="col-10">
+                        {{currentTitle}}
+                      </label>
+                      <span class="caret"></span>
+                    </button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu">
+                      <li *ngFor="let title of titleOptions" role="menuitem">
+                        <a class="dropdown-item" (click)="onSelectFilter('title', title)">
+                          {{title.value}}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
+                <!-- <div class="col-2">
+                  <label for="company">Title Name</label>
+                  <select class="form-control" id="titel-name" name="titel-name-input">
+                    <option class="text-center" *ngFor="let title of titleOptions; let i = index" value="{{i}}"
+                      (click)="onSelectFilter('title', title)">
+                      {{title.value}}
+                    </option>
+                  </select>
+                </div> -->
+
                 <div class="col-4">
                   <label for="company">First Name</label>
                   <input type="text" class="form-control" id="first-name-input" placeholder="Enter your first name"
@@ -44,34 +67,32 @@
                 </div>
               </div>
               <br>
+
               <div class="row">
                 <div class="col-2">
                   <label for="company">Gender</label>
-                  <div class="col col-form-label">
-                    <div class="form-check form-check-inline mr-1" id="gender-radios">
-                      <input class="form-check-input" type="radio" name="gender-radios" id="gender-radios-male"
-                        value="option1">
-                      <label class="form-check-label" for="gender-radios-male">Male</label>
-                    </div>
-                    <div class="form-check form-check-inline mr-1">
-                      <input class="form-check-input" type="radio" name="gender-radios" id="gender-radios-female"
-                        value="option2">
-                      <label class="form-check-label" for="gender-radios-female">Female</label>
+                  <div class="col col-form-label pl-0">
+                    <div class="form-check form-check-inline mr-1" id="gender-radios" *ngFor="let gender of genderList">
+                      <input type="radio" class="form-check-input" id="gender-radio-{{gender.value}}"
+                        name="gender-radio-{{gender.value}}" [checked]="gender.isSelected"
+                        (click)="onSelectFilter('gender', gender)">
+                      <label class="form-check-label" for="gender-radio-{{gender.value}}">{{gender.value}}</label>
                     </div>
                   </div>
                 </div>
                 <div class="col-4">
                   <label for="company">Weight</label>
-                  <input type="number" class="form-control" id="weight-input" placeholder="Enter your height"
-                    [(ngModel)]="employee.weight">
+                  <input type="number" min="0" max="500" class="form-control" id="weight-input"
+                    placeholder="Enter your weight" [(ngModel)]="employee.weight">
                 </div>
                 <div class="col-4">
                   <label for="company">Height</label>
-                  <input type="number" class="form-control" id="height-input" placeholder="Enter your height"
-                    [(ngModel)]="employee.height">
+                  <input type="number" min="0" max="300" class="form-control" id="height-input"
+                    placeholder="Enter your height" [(ngModel)]="employee.height">
                 </div>
               </div>
               <br>
+
               <div class="row">
                 <div class="col-2">
                   <label for="birthday">Birthday</label>
@@ -101,56 +122,39 @@
                   <input type="text" name="id-card-input" id="id-card-input" class="form-control" placeholder="ID Card"
                     [(ngModel)]="employee.idCard">
                 </div>
+
+                <!-- Marital Status -->
                 <div class="col-4">
                   <label for="company">Marital Status</label>
-                  <div class="col col-form-label">
-                    <div class="form-check form-check-inline mr-1" id="marry-radios">
+                  <div class="col col-form-label pl-0">
+                    <div class="form-check form-check-inline mr-1" id="marry-radios"
+                      *ngFor="let martial of martialStatus">
                       <input class="form-check-input" type="radio" name="marry-radios" id="marry-radios-single"
-                        value="option1">
-                      <label class="form-check-label" for="marry-radios-single">Single</label>
-                    </div>
-                    <div class="form-check form-check-inline mr-1">
-                      <input class="form-check-input" type="radio" name="marry-radios" id="marry-radios-married"
-                        value="option2">
-                      <label class="form-check-label" for="marry-radios-married">Married</label>
-                    </div>
-                    <div class="form-check form-check-inline mr-1">
-                      <input class="form-check-input" type="radio" name="marry-radios" id="marry-radios-separated"
-                        value="option2">
-                      <label class="form-check-label" for="marry-radios-separated">Separated</label>
-                    </div>
-                    <div class="form-check form-check-inline mr-1">
-                      <input class="form-check-input" type="radio" name="marry-radios" id="marry-radios-widowed"
-                        value="option2">
-                      <label class="form-check-label" for="marry-radios-widowed">Widowed</label>
+                        [checked]="martial.isSelected" (click)="onSelectFilter('martial', martial)">
+                      <label class="form-check-label" for="marry-radios-single">
+                        {{martial.value}}
+                      </label>
                     </div>
                   </div>
                 </div>
+
+                <!-- Military Status -->
                 <div class="col-4">
                   <label for="company">Military Status</label>
-                  <div class="col col-form-label">
-                    <div class="form-check form-check-inline mr-1" id="military-radios">
+                  <div class="col col-form-label pl-0">
+                    <div class="form-check form-check-inline mr-1" id="military-radios"
+                      *ngFor="let military of militaryStatus">
                       <input class="form-check-input" type="radio" name="military-radios" id="military-radios-serving"
-                        value="option1">
-                      <label class="form-check-label" for="military-radios-serving">Serving</label>
-                    </div>
-                    <div class="form-check form-check-inline mr-1">
-                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-completed"
-                        value="option2">
-                      <label class="form-check-label" for="military-radios-completed">completed</label>
-                    </div>
-                    <div class="form-check form-check-inline mr-1">
-                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-exempted"
-                        value="option2">
-                      <label class="form-check-label" for="military-radios-exempted">Exempted</label>
+                        [checked]="military.isSelected" (click)="onSelectFilter('military', military)">
+                      <label class="form-check-label" for="military-radios-serving">{{military.value}}</label>
                     </div>
                   </div>
                 </div>
               </div>
             </tab>
 
+            <!-- Employment Tab -->
             <tab heading="Employment">
-
               <div class="row">
                 <div class="form-group col-4">
                   <label>Strat Date</label>
@@ -167,26 +171,29 @@
                   <label for="employee-group">Employee Group</label>
                   <div class="" dropdown>
                     <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-                      {{displayEmployeeGroup}} <span class="caret"></span>
+                      {{currentGroup}}
+                      <span class="caret"></span>
                     </button>
                     <ul *dropdownMenu class="dropdown-menu" role="menu">
-                      <li *ngFor="let employeeGroup of employeeGroupListData" role="menuitem">
-                        <a class="dropdown-item" (click)="onSelectEmployeeGroup(employeeGroup)">
-                          {{employeeGroup.employeeGroupNameEn}}</a>
+                      <li *ngFor="let group of employeeGroups" role="menuitem">
+                        <a class="dropdown-item" (click)="onSelectFilter('group', group)">
+                          {{group.employeeGroupNameEn}}</a>
                       </li>
                     </ul>
                   </div>
                 </div>
+
                 <div class="form-group col-4">
                   <label for="employee-level">Employee Level</label>
                   <div class="" dropdown>
                     <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-                      {{displayEmployeeLevel}} <span class="caret"></span>
+                      {{currentLevel}} <span class="caret"></span>
                     </button>
                     <ul *dropdownMenu class="dropdown-menu" role="menu">
-                      <li *ngFor="let employeeLevel of employeeLevelListData" role="menuitem">
-                        <a class="dropdown-item" (click)="onSelectEmployeeLevel(employeeLevel)">
-                          {{employeeLevel.employeeLevelNameEn}}</a>
+                      <li *ngFor="let level of employeeGropLevels" role="menuitem">
+                        <a class="dropdown-item" (click)="onSelectFilter('level', level)">
+                          {{level.employeeLevelNameEn}}
+                        </a>
                       </li>
                     </ul>
                   </div>
@@ -245,7 +252,8 @@
               </div>
             </tab>
 
-            <tab heading="Tax reduction">
+            <!-- Tax Reduction Tab-->
+            <tab heading="Tax Reduction">
               <div class="row">
                 <div class="col-4">
                   <label for="company">เงินได้</label>
@@ -391,6 +399,7 @@
 
             </tab>
 
+            <!-- Address Tab -->
             <tab>
               <ng-template tabHeading><i class="icon-pie-chart"></i> Address</ng-template>
               <div class="row">
@@ -477,6 +486,7 @@
               </div>
             </tab>
 
+            <!-- Education Tab -->
             <tab heading="Education">
               <div class="row">
                 <div class="form-group col-12">
@@ -492,6 +502,7 @@
               </div>
             </tab>
 
+            <!-- Experience Tab -->
             <tab heading="Experience">
               <div class="row">
                 <div class="form-group col-12">

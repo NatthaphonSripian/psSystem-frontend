@@ -1,4 +1,4 @@
-export interface EmployeeGroup {
+export interface IEmployeeGroup {
   id: number;
   employeeGroupCode: string;
   employeeGroupNameTh: string;

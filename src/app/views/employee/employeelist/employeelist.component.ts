@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Employee } from './../../../interface/employee/employee';
+import { IEmployee } from '../../../interface/employee/employee-interface';
 import { EmployeeService } from './../../../service/employee.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { EmployeeService } from './../../../service/employee.service';
   styleUrls: ["./employeelist.component.scss"]
 })
 export class EmployeelistComponent implements OnInit {
-  public employeeListData: Employee[] = [];
-  public employeeListFiltered: Employee[] = [];
+  public employeeListData: IEmployee[] = [];
+  public employeeListFiltered: IEmployee[] = [];
 
   constructor(
     private serviceEmployee: EmployeeService,
@@ -23,15 +23,28 @@ export class EmployeelistComponent implements OnInit {
   }
 
   reloadDataemployee() {
-    this.serviceEmployee.employeeGetAll().subscribe((res: Employee[]) => {
+    this.serviceEmployee.employeeGetAll().subscribe((res: IEmployee[]) => {
       this.employeeListData = res;
       console.log(this.employeeListData);
+      this.employeeListFiltered = [];
       if (this.employeeListData.length > 0) {
-        this.employeeListFiltered = this.employeeListData;
-      } else {
-        this.employeeListFiltered = [];
+        this.employeeListFiltered = this.employeeListData.map(employee => {
+          const validText =
+            this.isValidString(employee.titleName) &&
+            this.isValidString(employee.firstName) &&
+            this.isValidString(employee.lastName);
+          employee.displayName = validText
+            ? `${employee.titleName} ${employee.firstName} ${employee.lastName}`
+            : `${employee.firstName} ${employee.lastName}`;
+
+          return employee;
+        });
       }
     });
+  }
+
+  isValidString(value: string) {
+    return value !== "" && value !== null;
   }
 
   updateEmployee(id: number) {

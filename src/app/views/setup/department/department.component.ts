@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Department } from './../../../interface/setup/department';
+import { IDepartment } from '../../../interface/setup/department-interface';
 import { DepartmentService } from './../../../service/department.service';
 
 @Component({
@@ -10,14 +10,14 @@ import { DepartmentService } from './../../../service/department.service';
   styleUrls: ["./department.component.scss"]
 })
 export class DepartmentComponent implements OnInit {
-  public department: Department;
+  public department: IDepartment;
   id: number;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private serviceDepartment: DepartmentService
   ) {
-    this.department = { id: null } as Department;
+    this.department = { id: null } as IDepartment;
   }
 
   ngOnInit() {

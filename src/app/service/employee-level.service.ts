@@ -4,8 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { EmployeeLevel } from './../interface/setup/employee-level';
-import { API_URL } from './../shared/constant/api.constant';
+import { IEmployeeLevel } from '../interface/setup/employee-level-interface';
+import { API_URL } from '../shared/constant/api.constant';
 
 @Injectable({
   providedIn: "root"
@@ -25,27 +25,27 @@ export class EmployeeLevelService {
     this.toastr.success(msg, title);
   }
 
-  public employeeLevelGetAll(): Observable<EmployeeLevel[]> {
+  public getEmployeeLevels(): Observable<IEmployeeLevel[]> {
     return this.http
-      .get<EmployeeLevel[]>(`${API_URL.EMPLOYEE_LEVEL_GET_ALL}`, {
+      .get<IEmployeeLevel[]>(`${API_URL.EMPLOYEE_LEVEL_GET_ALL}`, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res));
   }
 
-  public employeeLevelGetById(id: number): Observable<EmployeeLevel> {
+  public employeeLevelGetById(id: number): Observable<IEmployeeLevel> {
     return this.http
-      .get<EmployeeLevel>(`${API_URL.EMPLOYEE_LEVEL_GET_BY_ID}${id}`, {
+      .get<IEmployeeLevel>(`${API_URL.EMPLOYEE_LEVEL_GET_BY_ID}${id}`, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res));
   }
 
   public employeeLevelSave(
-    employeeLevel: EmployeeLevel
-  ): Observable<EmployeeLevel> {
+    employeeLevel: IEmployeeLevel
+  ): Observable<IEmployeeLevel> {
     return this.http
-      .post<EmployeeLevel>(`${API_URL.EMPLOYEE_LEVEL_SAVE}`, employeeLevel, {
+      .post<IEmployeeLevel>(`${API_URL.EMPLOYEE_LEVEL_SAVE}`, employeeLevel, {
         headers: this.getHeaders()
       })
       .pipe(

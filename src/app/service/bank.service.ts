@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Bank } from '../interface/setup/bank';
+import { IBank } from '../interface/setup/bank-interface';
 import { API_URL } from '../shared/constant/api.constant';
 
 @Injectable({
@@ -25,25 +25,25 @@ export class BankService {
     return headers;
   }
 
-  public bankGetAll(): Observable<Bank[]> {
+  public bankGetAll(): Observable<IBank[]> {
     return this.http
-      .get<Bank[]>(`${API_URL.BANK_GET_ALL}`, {
+      .get<IBank[]>(`${API_URL.BANK_GET_ALL}`, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res));
   }
 
-  public bankGetById(id: number): Observable<Bank> {
+  public bankGetById(id: number): Observable<IBank> {
     return this.http
-      .get<Bank>(`${API_URL.BANK_GET_BY_ID}${id}`, {
+      .get<IBank>(`${API_URL.BANK_GET_BY_ID}${id}`, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res));
   }
 
-  public bankSave(bank: Bank): Observable<Bank> {
+  public bankSave(bank: IBank): Observable<IBank> {
     return this.http
-      .post<Bank>(`${API_URL.BANK_SAVE}`, bank, {
+      .post<IBank>(`${API_URL.BANK_SAVE}`, bank, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res, this.showToaster("Save data success", "Bank")));

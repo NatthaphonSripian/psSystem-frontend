@@ -4,8 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Employee } from './../interface/employee/employee';
-import { API_URL } from './../shared/constant/api.constant';
+import { IEmployee } from '../interface/employee/employee-interface';
+import { API_URL } from '../shared/constant/api.constant';
 
 @Injectable({
   providedIn: "root"
@@ -25,25 +25,25 @@ export class EmployeeService {
     this.toastr.success(msg, title);
   }
 
-  public employeeGetAll(): Observable<Employee[]> {
+  public employeeGetAll(): Observable<IEmployee[]> {
     return this.http
-      .get<Employee[]>(`${API_URL.EMPLOYEE_GET_ALL}`, {
+      .get<IEmployee[]>(`${API_URL.EMPLOYEE_GET_ALL}`, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res));
   }
 
-  public employeeGetById(id: number): Observable<Employee> {
+  public getEmployeeById(id: number): Observable<IEmployee> {
     return this.http
-      .get<Employee>(`${API_URL.EMPLOYEE_GET_BY_ID}${id}`, {
+      .get<IEmployee>(`${API_URL.EMPLOYEE_GET_BY_ID}${id}`, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res));
   }
 
-  public employeeSave(employee: Employee): Observable<Employee> {
+  public employeeSave(employee: IEmployee): Observable<IEmployee> {
     return this.http
-      .post<Employee>(`${API_URL.EMPLOYEE_SAVE}`, employee, {
+      .post<IEmployee>(`${API_URL.EMPLOYEE_SAVE}`, employee, {
         headers: this.getHeaders()
       })
       .pipe(map(res => res, this.showToaster("Save data success", "Employee")));

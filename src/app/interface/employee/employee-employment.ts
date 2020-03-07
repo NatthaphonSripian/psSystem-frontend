@@ -1,13 +1,13 @@
-import { Department } from './../setup/department';
-import { Position } from './../setup/position';
+import { IDepartment } from '../setup/department-interface';
+import { IPosition } from '../setup/position-interface';
 
 export interface EmployeeEmployment {
   id: number;
   startDate: Date;
   endDate: Date;
   employeeType: string;
-  position: Position;
-  department: Department;
+  position: IPosition;
+  department: IDepartment;
   salary: number;
   remark: string;
   createdBy?: string;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Position } from './../../../interface/setup/position';
+import { IPosition } from '../../../interface/setup/position-interface';
 import { PositionService } from './../../../service/position.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { PositionService } from './../../../service/position.service';
   styleUrls: ["./position.component.scss"]
 })
 export class PositionComponent implements OnInit {
-  public position: Position;
+  public position: IPosition;
   id: number;
 
   constructor(
@@ -18,7 +18,7 @@ export class PositionComponent implements OnInit {
     private route: ActivatedRoute,
     private servicePosition: PositionService
   ) {
-    this.position = { id: null } as Position;
+    this.position = { id: null } as IPosition;
   }
 
   ngOnInit() {
