@@ -10,35 +10,32 @@ import { FundService } from './../../../service/fund.service';
   styleUrls: ["./fundlist.component.scss"]
 })
 export class FundlistComponent implements OnInit {
-  public fundListData: IFund[] = [];
+  public fundList: IFund[] = [];
   public fundListFiltered: IFund[] = [];
 
-  constructor(private serviceFund: FundService, private router: Router) {}
+  constructor(
+    private readonly _router: Router,
+    private readonly _fundService: FundService
+  ) {}
 
   ngOnInit() {
-    this.reloadDataFund();
+    this.getFundList();
   }
 
-  reloadDataFund() {
-    this.serviceFund.fundGetAll().subscribe((res: IFund[]) => {
-      this.fundListData = res;
-
-      if (this.fundListData.length > 0) {
-        this.fundListFiltered = this.fundListData;
-      } else {
-        this.fundListFiltered = [];
-      }
+  getFundList() {
+    this._fundService.getFundList().subscribe((res: IFund[]) => {
+      this.fundList = res;
+      this.fundListFiltered = this.fundList;
     });
   }
 
   updateFund(id: number) {
-    this.router.navigate(["setup/fund", id]);
+    this._router.navigate(["setup/fund", id]);
   }
 
   deleteFund(id: number) {
-    // Delete Data and reload data
-    this.serviceFund.fundDeleteById(id).subscribe(() => {
-      this.reloadDataFund();
+    this._fundService.deleteFund(id).subscribe(() => {
+      this.getFundList();
     });
   }
 }

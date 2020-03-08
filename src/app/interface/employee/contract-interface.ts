@@ -1,4 +1,4 @@
-export interface EmployeeContract {
+export interface IContract {
   id: string;
   contractNo: string;
   contractDate: Date;

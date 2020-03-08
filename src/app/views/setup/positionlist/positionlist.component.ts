@@ -10,38 +10,32 @@ import { PositionService } from './../../../service/position.service';
   styleUrls: ["./positionlist.component.scss"]
 })
 export class PositionlistComponent implements OnInit {
-  public positionListData: IPosition[] = [];
+  public positionList: IPosition[] = [];
   public positionListFiltered: IPosition[] = [];
 
   constructor(
-    private servicePosition: PositionService,
-    private router: Router
+    private readonly _router: Router,
+    private readonly _positionService: PositionService
   ) {}
 
   ngOnInit() {
-    this.reloadDataposition();
+    this.getPositionList();
   }
 
-  reloadDataposition() {
-    this.servicePosition.positionGetAll().subscribe((res: IPosition[]) => {
-      this.positionListData = res;
-
-      if (this.positionListData.length > 0) {
-        this.positionListFiltered = this.positionListData;
-      } else {
-        this.positionListFiltered = [];
-      }
+  getPositionList() {
+    this._positionService.getPositionList().subscribe((res: IPosition[]) => {
+      this.positionList = res;
+      this.positionListFiltered = this.positionList;
     });
   }
 
   updatePosition(id: number) {
-    this.router.navigate(["setup/position", id]);
+    this._router.navigate(["setup/position", id]);
   }
 
   deletePosition(id: number) {
-    // Delete Data and reload data
-    this.servicePosition.positionDeleteById(id).subscribe(() => {
-      this.reloadDataposition();
+    this._positionService.deletePosition(id).subscribe(() => {
+      this.getPositionList();
     });
   }
 }

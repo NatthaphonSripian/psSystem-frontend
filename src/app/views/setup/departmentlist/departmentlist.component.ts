@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IDepartment } from 'src/app/interface';
 
-import { IDepartment } from '../../../interface/setup/department-interface';
 import { DepartmentService } from './../../../service/department.service';
 
 @Component({
@@ -10,38 +10,34 @@ import { DepartmentService } from './../../../service/department.service';
   styleUrls: ["./departmentlist.component.scss"]
 })
 export class DepartmentlistComponent implements OnInit {
-  public departmentListData: IDepartment[] = [];
+  public departmentList: IDepartment[] = [];
   public departmentListFiltered: IDepartment[] = [];
 
   constructor(
-    private serviceDepartment: DepartmentService,
-    private router: Router
+    private readonly _router: Router,
+    private readonly _departmentService: DepartmentService
   ) {}
 
   ngOnInit() {
-    this.reloadDataDepartment();
+    this.getDepartmentList();
   }
 
-  reloadDataDepartment() {
-    this.serviceDepartment.departmentGetAll().subscribe((res: IDepartment[]) => {
-      this.departmentListData = res;
-
-      if (this.departmentListData.length > 0) {
-        this.departmentListFiltered = this.departmentListData;
-      } else {
-        this.departmentListFiltered = [];
-      }
-    });
+  getDepartmentList() {
+    this._departmentService
+      .getDepartmentList()
+      .subscribe((res: IDepartment[]) => {
+        this.departmentList = res;
+        this.departmentListFiltered = this.departmentList;
+      });
   }
 
   updateDepartment(id: number) {
-    this.router.navigate(["setup/department", id]);
+    this._router.navigate(["setup/department", id]);
   }
 
   deleteDepartment(id: number) {
-    // Delete Data and reload data
-    this.serviceDepartment.departmentDeleteById(id).subscribe(() => {
-      this.reloadDataDepartment();
+    this._departmentService.deleteDepartment(id).subscribe(() => {
+      this.getDepartmentList();
     });
   }
 }

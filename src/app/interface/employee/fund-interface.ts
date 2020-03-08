@@ -1,4 +1,4 @@
-export interface EmployeeFund {
+export interface IFund {
   id: number;
   fundStartDate: Date;
   fundEndDate: Date;

@@ -7,3 +7,4 @@ export * from "./setup/employee-level-interface";
 export * from "./employee/employee-interface";
 export * from "./setup/address-interface";
 export * from "src/app/interface/setup/filter-interface";
+export * from "src/app/interface/organization/organization-interface";

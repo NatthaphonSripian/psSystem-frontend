@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { IBank } from '../../../interface/setup/bank-interface';
 import { BankService } from './../../../service/bank.service';
@@ -10,35 +10,29 @@ import { BankService } from './../../../service/bank.service';
   styleUrls: ["./bank.component.scss"]
 })
 export class BankComponent implements OnInit {
-  public bank: IBank;
-  id: number;
+  bank = { id: null } as IBank;
+
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private servieBank: BankService
-  ) {
-    this.bank = { id: null } as IBank;
-  }
+    private readonly _route: ActivatedRoute,
+    private readonly _bankService: BankService
+  ) {}
 
   ngOnInit() {
-    this.id = this.route.snapshot.params["id"];
-    if (this.id) {
-      this.onLoadDataBank(this.id);
+    const id = this._route.snapshot.params["id"];
+    if (id) {
+      this.getBankById(id);
     }
   }
 
-  onLoadDataBank(id: number) {
-    this.servieBank.bankGetById(this.id).subscribe(
-      data => {
-        this.bank = data;
-      },
-      error => console.log(error)
-    );
+  getBankById(id: number) {
+    this._bankService.getBankById(id).subscribe(data => {
+      Object.assign(this.bank, data);
+    });
   }
 
   onSave() {
-    this.servieBank.bankSave(this.bank).subscribe(data => {
-      this.bank = data;
+    this._bankService.saveBank(this.bank).subscribe(data => {
+      Object.assign(this.bank, data);
     });
   }
 }

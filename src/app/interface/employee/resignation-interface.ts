@@ -1,4 +1,4 @@
-export interface EmployeeResignation {
+export interface IResignation {
   id: number;
   resignationNo: string;
   resignationDate: Date;

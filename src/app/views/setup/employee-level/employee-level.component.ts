@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { IEmployeeLevel } from '../../../interface/setup/employee-level-interface';
 import { EmployeeLevelService } from './../../../service/employee-level.service';
@@ -10,38 +10,29 @@ import { EmployeeLevelService } from './../../../service/employee-level.service'
   styleUrls: ["./employee-level.component.scss"]
 })
 export class EmployeeLevelComponent implements OnInit {
-  public employeeLevel: IEmployeeLevel;
-  id: number;
+  employeeLevel = { id: null } as IEmployeeLevel;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private serviceEmployeeLevel: EmployeeLevelService
-  ) {
-    this.employeeLevel = { id: null } as IEmployeeLevel;
-  }
+    private readonly _route: ActivatedRoute,
+    private readonly _levelService: EmployeeLevelService
+  ) {}
 
   ngOnInit() {
-    this.id = this.route.snapshot.params["id"];
-    if (this.id) {
-      this.onLoadDataEmployeeLevel(this.id);
+    const id = this._route.snapshot.params["id"];
+    if (id) {
+      this.getEmployeeLevelById(id);
     }
   }
 
-  onLoadDataEmployeeLevel(id: number) {
-    this.serviceEmployeeLevel.employeeLevelGetById(this.id).subscribe(
-      data => {
-        this.employeeLevel = data;
-      },
-      error => console.log(error)
-    );
+  getEmployeeLevelById(id: number) {
+    this._levelService.getEmployeeLevelById(id).subscribe(data => {
+      Object.assign(this.employeeLevel, data);
+    });
   }
 
   onSave() {
-    this.serviceEmployeeLevel
-      .employeeLevelSave(this.employeeLevel)
-      .subscribe(data => {
-        this.employeeLevel = data;
-      });
+    this._levelService.saveEmployeeLevel(this.employeeLevel).subscribe(data => {
+      Object.assign(this.employeeLevel, data);
+    });
   }
 }

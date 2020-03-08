@@ -1,14 +1,14 @@
 import { IAddress } from '../setup/address-interface';
 import { IEmployeeGroup } from '../setup/employee-group-interface';
 import { IEmployeeLevel } from '../setup/employee-level-interface';
-import { EmployeeContract } from './employee-contract';
-import { EmployeeEducation } from './employee-education';
-import { EmployeeEmployment } from './employee-employment';
-import { EmployeeExperience } from './employee-experience';
-import { EmployeeFund } from './employee-fund';
-import { EmployeeGuarantee } from './employee-guarantee';
-import { EmployeeReduceTax } from './employee-reduce-tax';
+import { IContract } from './contract-interface';
+import { IEducation } from './education-interface';
 import { EmployeeSocial } from './employee-social';
+import { IEmployment } from './employment-interface';
+import { IExperience } from './experience-inteface';
+import { IFund } from './fund-interface';
+import { IGuarantee } from './guarantee-interfce';
+import { ITaxReduction } from './tax-reduction-interface';
 
 export interface IEmployee {
   id: number;
@@ -32,14 +32,16 @@ export interface IEmployee {
   editBy: string;
   editDate: Date;
   addresses: IAddress;
-  employeeEducations?: EmployeeEducation[];
-  employeeContracts?: EmployeeContract[];
-  employeeExperiences?: EmployeeExperience[];
-  employeeFunds?: EmployeeFund[];
-  employeeGuarantees?: EmployeeGuarantee[];
-  employeeEmployments?: EmployeeEmployment[];
-  employeeReduceTax?: EmployeeReduceTax;
+  employeeEmployment?: IEmployment;
+  employeeEducations?: IEducation[];
+  employeeContracts?: IContract[];
+  employeeExperiences?: IExperience[];
+  employeeFunds?: IFund[];
+  employeeGuarantees?: IGuarantee[];
+  // employeeEmployments?: IEmployment[];
+  employeeReduceTax?: ITaxReduction;
   employeeSocial?: EmployeeSocial;
+  //Move to Employment
   employeeGroup: IEmployeeGroup;
   employeeLevel: IEmployeeLevel;
 }

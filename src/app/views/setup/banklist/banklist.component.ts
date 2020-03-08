@@ -10,35 +10,32 @@ import { IBank } from './../../../interface';
   styleUrls: ["./banklist.component.scss"]
 })
 export class BanklistComponent implements OnInit {
-  public bankListData: IBank[] = [];
+  public bankList: IBank[] = [];
   public bankListFiltered: IBank[] = [];
 
-  constructor(private serviceBank: BankService, private router: Router) {}
+  constructor(
+    private readonly _router: Router,
+    private readonly _bankService: BankService
+  ) {}
 
   ngOnInit() {
-    this.reloadDataBank();
+    this.getBankList();
   }
 
-  reloadDataBank() {
-    this.serviceBank.bankGetAll().subscribe((res: IBank[]) => {
-      this.bankListData = res;
-
-      if (this.bankListData.length > 0) {
-        this.bankListFiltered = this.bankListData;
-      } else {
-        this.bankListFiltered = [];
-      }
+  getBankList() {
+    this._bankService.getBankList().subscribe((res: IBank[]) => {
+      this.bankList = res;
+      this.bankListFiltered = this.bankList;
     });
   }
 
   updateBank(id: number) {
-    this.router.navigate(["setup/bank", id]);
+    this._router.navigate(["setup/bank", id]);
   }
 
   deleteBank(id: number) {
-    // Delete Data and reload data
-    this.serviceBank.bankDeleteById(id).subscribe(() => {
-      this.reloadDataBank();
+    this._bankService.deleteBank(id).subscribe(() => {
+      this.getBankList();
     });
   }
 }

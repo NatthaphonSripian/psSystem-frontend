@@ -1,4 +1,4 @@
-export interface EmployeeReduceTax {
+export interface ITaxReduction {
   id: number;
   spouseDivide: string;
   spouseReduce: string;

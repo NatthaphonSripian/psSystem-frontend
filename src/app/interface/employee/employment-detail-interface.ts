@@ -1,4 +1,4 @@
-export interface EmployeeEmploymentDetail {
+export interface IEmploymentDetail {
   id: number;
   listNo: number;
   incomeDeductAmount: number;

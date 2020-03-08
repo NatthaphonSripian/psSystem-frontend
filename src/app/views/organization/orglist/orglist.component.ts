@@ -1,46 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Organization } from './../../../interface/organization/organization';
+import { IOrganization } from '../../../interface/organization/organization-interface';
 import { OrganizationService } from './../../../service/organization.service';
 
 @Component({
-  selector: 'app-orglist',
-  templateUrl: './orglist.component.html',
-  styleUrls: ['./orglist.component.scss']
+  selector: "app-orglist",
+  templateUrl: "./orglist.component.html",
+  styleUrls: ["./orglist.component.scss"]
 })
 export class OrglistComponent implements OnInit {
+  public orgList: IOrganization[] = [];
+  public orgListFiltered: IOrganization[] = [];
 
-  public orgListData: Organization[] = [];
-  public orgListFiltered: Organization[] = [];
-
-  constructor(private serviceOrganization: OrganizationService, private router: Router) {}
+  constructor(
+    private readonly _router: Router,
+    private readonly _orgService: OrganizationService
+  ) {}
 
   ngOnInit() {
-    this.reloadDataOrg();
+    this.getOrganizationList();
   }
 
-  reloadDataOrg() {
-    this.serviceOrganization.orgGetAll().subscribe((res: Organization[]) => {
-      this.orgListData = res;
-
-      if (this.orgListData.length > 0) {
-        this.orgListFiltered = this.orgListData;
-      } else {
-        this.orgListFiltered = [];
-      }
+  getOrganizationList() {
+    this._orgService.getOrganizationList().subscribe((res: IOrganization[]) => {
+      this.orgList = res;
+      this.orgListFiltered = this.orgList;
     });
   }
 
   updateOrg(id: number) {
-    this.router.navigate(["organization/orginfo", id]);
+    this._router.navigate(["organization/orginfo", id]);
   }
 
   deleteOrg(id: number) {
-    // Delete Data and reload data
-    this.serviceOrganization.orgDeleteById(id).subscribe(() => {
-      this.reloadDataOrg();
+    this._orgService.deleteOrganizationById(id).subscribe(() => {
+      this.getOrganizationList();
     });
   }
-
 }

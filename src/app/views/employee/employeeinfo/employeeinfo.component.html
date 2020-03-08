@@ -83,12 +83,14 @@
                 <div class="col-4">
                   <label for="company">Weight</label>
                   <input type="number" min="0" max="500" class="form-control" id="weight-input"
-                    placeholder="Enter your weight" [(ngModel)]="employee.weight">
+                    placeholder="Enter your weight" [(ngModel)]="employee.weight"
+                    (ngModelChange)="validateNumber('weight-input', employee.weight)">
                 </div>
                 <div class="col-4">
                   <label for="company">Height</label>
                   <input type="number" min="0" max="300" class="form-control" id="height-input"
-                    placeholder="Enter your height" [(ngModel)]="employee.height">
+                    placeholder="Enter your height" [(ngModel)]="employee.height"
+                    (ngModelChange)="validateNumber('height-input', employee.height)">
                 </div>
               </div>
               <br>
@@ -158,8 +160,10 @@
               <div class="row">
                 <div class="form-group col-4">
                   <label>Strat Date</label>
-                  <input class="form-control" type="date" id="start-date-work">
+                  <!-- <input class="form-control" type="date" id="start-date-work"> -->
+                  <input class="form-control" type="date" id="start-date-work" [(ngModel)]="employment.startDate">
                 </div>
+                <!-- TODO: Calculate or Get from DB -->
                 <div class="form-group col-4">
                   <label>year’s experience</label>
                   <input class="form-control" type="text" id="work-age">
@@ -200,28 +204,38 @@
                 </div>
               </div>
 
+              <!-- TODO: Add Placeholder -->
               <div class="row">
                 <div class="form-group col-4">
                   <label for="city">Position</label>
-                  <input type="text" class="form-control" id="position" placeholder="">
+                  <input type="text" class="form-control" id="position" placeholder=""
+                    [(ngModel)]="employment.position">
                 </div>
                 <div class="form-group col-4">
                   <label for="city">Department</label>
-                  <input type="text" class="form-control" id="department" placeholder="">
+                  <input type="text" class="form-control" id="department" placeholder=""
+                    [(ngModel)]="employment.department">
                 </div>
                 <div class="form-group col-4">
                   <label>Employee Type</label>
-                  <input type="text" class="form-control" id="employee-type" placeholder="">
+                  <input type="text" class="form-control" id="employee-type" placeholder=""
+                    [(ngModel)]="employment.employeeType">
                 </div>
               </div>
 
+              <!-- Todo: Fix comma seperator -->
               <div class="row">
                 <div class="form-group col-4">
                   <label>Salary</label>
-                  <input class="form-control text-right" type="text" id="salary-input" placeholder="999,999.00">
+                  <input class="form-control text-right" type="text" id="salary-input" placeholder="999,999.00"
+                    [(ngModel)]="employment.salary">
+                  <!-- <input class="form-control text-right" type="text" id="salary-input" placeholder="999,999.00"
+                    [ngModel]="employment.salary | number"
+                    (ngModelChange)="validateNumber('salary-input', salary.value)" #salary> -->
                 </div>
               </div>
 
+              <!-- TODO: Get data -->
               <div class="row">
                 <div class="form-group col-6">
                   <table class="table">
@@ -256,47 +270,37 @@
             <tab heading="Tax Reduction">
               <div class="row">
                 <div class="col-4">
-                  <label for="company">เงินได้</label>
+                  <label for="income">เงินได้</label>
                   <div class="col col-form-label">
-                    <div class="form-check form-check-inline mr-1" id="military-radios">
-                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-serving"
-                        value="option1">
-                      <label class="form-check-label" for="military-radios-serving">เงินได้ฝ่ายเดียว</label>
-                    </div>
-                    <div class="form-check form-check-inline mr-1">
-                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-completed"
-                        value="option2">
-                      <label class="form-check-label" for="military-radios-completed">เงินได้สองฝ่าย</label>
+                    <div class="form-check form-check-inline mr-1" id="div-income-type-{{income.value}"
+                      *ngFor="let income of incomeTypes">
+                      <input class="form-check-input" type="radio" name="input-income-type-{{income.value}}"
+                      id="input-income-type-{{income.value}}" [checked]="income.isSelected">
+                      <label class="form-check-label" for="txt-income-type-{{income.value}}">{{income.value}}</label>
                     </div>
                   </div>
                 </div>
+
                 <div class="col-4">
-                  <label for="company">ลดหย่อนคู่สมรส</label>
+                  <label for="spouse-allowanes">ลดหย่อนคู่สมรส</label>
                   <div class="col col-form-label">
-                    <div class="form-check form-check-inline mr-1" id="military-radios">
-                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-serving"
-                        value="option1">
-                      <label class="form-check-label" for="military-radios-serving">หัก</label>
-                    </div>
-                    <div class="form-check form-check-inline mr-1">
-                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-completed"
-                        value="option2">
-                      <label class="form-check-label" for="military-radios-completed">ไม่หัก</label>
+                    <div class="form-check form-check-inline mr-1" id="div-allowances-{{spouse.value}}"
+                      *ngFor="let spouse of spouseAllowances">
+                      <input class="form-check-input" type="radio" name="input-allowance-{{spouse.value}}"
+                        id="input-allowance-{{spouse.value}}" [checked]="spouse.isSelected">
+                      <label class="form-check-label" for="txt-allowance-{{spouse.value}}">{{spouse.value}}</label>
                     </div>
                   </div>
                 </div>
+
                 <div class="col-4">
-                  <label for="company">ประเภทการยื่นภาษี</label>
+                  <label for="tax-filling-types">ประเภทการยื่นภาษี</label>
                   <div class="col col-form-label">
-                    <div class="form-check form-check-inline mr-1" id="military-radios">
-                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-serving"
-                        value="option1">
-                      <label class="form-check-label" for="military-radios-serving">แยกยื่น</label>
-                    </div>
-                    <div class="form-check form-check-inline mr-1">
-                      <input class="form-check-input" type="radio" name="military-radios" id="military-radios-completed"
-                        value="option2">
-                      <label class="form-check-label" for="military-radios-completed">ยื่นรวม</label>
+                    <div class="form-check form-check-inline mr-1" id="div-tax-filling-{{filling.value}}"
+                      *ngFor="let filling of taxFillingTypes">
+                      <input class="form-check-input" type="radio" name="input-tax-filling-{{filling.value}}"
+                        id="input-tax-filling-{{filling.value}}" [checked]="filling.isSelected">
+                      <label class="form-check-label" for="txt-tax-filling-{{filling.value}}">{{filling.value}}</label>
                     </div>
                   </div>
                 </div>
@@ -406,82 +410,79 @@
                 <div class="form-group col-sm-8">
                   <label for="city">Address</label>
                   <input type="text" class="form-control" id="address" placeholder="Enter your address"
-                    [(ngModel)]="employee.addresses.addressName">
+                    [(ngModel)]="address.addressName">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Address No</label>
                   <input type="text" class="form-control" id="address-no" placeholder="Address no"
-                    [(ngModel)]="employee.addresses.addressNo">
+                    [(ngModel)]="address.addressNo">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Group No</label>
                   <input type="text" class="form-control" id="group-no" placeholder="Group no"
-                    [(ngModel)]="employee.addresses.groupNo">
+                    [(ngModel)]="address.groupNo">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Building</label>
                   <input type="text" class="form-control" id="building" placeholder="Building"
-                    [(ngModel)]="employee.addresses.building">
+                    [(ngModel)]="address.building">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Room No</label>
                   <input type="text" class="form-control" id="room-no" placeholder="Room no"
-                    [(ngModel)]="employee.addresses.roomNo">
+                    [(ngModel)]="address.roomNo">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Floor No</label>
                   <input type="text" class="form-control" id="floor-no" placeholder="Floor no"
-                    [(ngModel)]="employee.addresses.floorNo">
+                    [(ngModel)]="address.floorNo">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Village</label>
                   <input type="text" class="form-control" id="village" placeholder="Village"
-                    [(ngModel)]="employee.addresses.village">
+                    [(ngModel)]="address.village">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Lane</label>
-                  <input type="text" class="form-control" id="lena" placeholder="Lane"
-                    [(ngModel)]="employee.addresses.lane">
+                  <input type="text" class="form-control" id="lena" placeholder="Lane" [(ngModel)]="address.lane">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Street</label>
-                  <input type="text" class="form-control" id="street" placeholder="Street"
-                    [(ngModel)]="employee.addresses.street">
+                  <input type="text" class="form-control" id="street" placeholder="Street" [(ngModel)]="address.street">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-sm-4">
                   <label for="postal-code">District</label>
                   <input type="text" class="form-control" id="district" placeholder="district"
-                    [(ngModel)]="employee.addresses.district">
+                    [(ngModel)]="address.district">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Amphur</label>
-                  <input type="text" class="form-control" id="amphur" placeholder="Amphur"
-                    [(ngModel)]="employee.addresses.amphur">
+                  <input type="text" class="form-control" id="amphur" placeholder="Amphur" [(ngModel)]="address.amphur">
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="postal-code">Province</label>
                   <input type="text" class="form-control" id="province" placeholder="Province"
-                    [(ngModel)]="employee.addresses.province">
+                    [(ngModel)]="address.province">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-sm-4">
                   <label for="country">Country</label>
                   <input type="text" class="form-control" id="country" placeholder="Country name"
-                    [(ngModel)]="employee.addresses.country">
+                    [(ngModel)]="address.country">
                 </div>
                 <div class="form-group  col-sm-4">
                   <label for="country">Post code</label>
                   <input type="text" class="form-control" id="postcode" placeholder="postcode"
-                    [(ngModel)]="employee.addresses.postalCode">
+                    [(ngModel)]="address.postalCode">
                 </div>
               </div>
             </tab>

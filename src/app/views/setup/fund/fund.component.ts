@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { IFund } from '../../../interface/setup/fund-interface';
 import { FundService } from './../../../service/fund.service';
@@ -10,37 +10,29 @@ import { FundService } from './../../../service/fund.service';
   styleUrls: ["./fund.component.scss"]
 })
 export class FundComponent implements OnInit {
-  public fund: IFund;
-  id: number;
+  fund = { id: null } as IFund;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private servieFund: FundService
-  ) {
-    this.fund = { id: null } as IFund;
-  }
+    private readonly _route: ActivatedRoute,
+    private readonly _fundService: FundService
+  ) {}
 
   ngOnInit() {
-    this.id = this.route.snapshot.params["id"];
-    if (this.id) {
-      this.onLoadDataFund(this.id);
+    const id = this._route.snapshot.params["id"];
+    if (id) {
+      this.getFundById(id);
     }
   }
 
-  onLoadDataFund(id: number) {
-    this.servieFund.fundGetById(this.id).subscribe(
-      data => {
-        this.fund = data;
-      },
-      error => console.log(error)
-    );
+  getFundById(id: number) {
+    this._fundService.getFundById(id).subscribe(data => {
+      Object.assign(this.fund, data);
+    });
   }
 
   onSave() {
-    console.log(this.fund);
-    this.servieFund.fundSave(this.fund).subscribe(data => {
-      this.fund = data;
+    this._fundService.saveFund(this.fund).subscribe(data => {
+      Object.assign(this.fund, data);
     });
   }
 }

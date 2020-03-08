@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { IPosition } from 'src/app/interface';
 
-import { IPosition } from '../../../interface/setup/position-interface';
 import { PositionService } from './../../../service/position.service';
 
 @Component({
@@ -10,36 +10,29 @@ import { PositionService } from './../../../service/position.service';
   styleUrls: ["./position.component.scss"]
 })
 export class PositionComponent implements OnInit {
-  public position: IPosition;
-  id: number;
+  position = { id: null } as IPosition;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private servicePosition: PositionService
-  ) {
-    this.position = { id: null } as IPosition;
-  }
+    private readonly _route: ActivatedRoute,
+    private readonly _positionService: PositionService
+  ) {}
 
   ngOnInit() {
-    this.id = this.route.snapshot.params["id"];
-    if (this.id) {
-      this.onLoadDataPosition(this.id);
+    const id = this._route.snapshot.params["id"];
+    if (id) {
+      this.getPosition(id);
     }
   }
 
-  onLoadDataPosition(id: number) {
-    this.servicePosition.positionGetById(this.id).subscribe(
-      data => {
-        this.position = data;
-      },
-      error => console.log(error)
-    );
+  getPosition(id: number) {
+    this._positionService.getPositionById(id).subscribe(data => {
+      Object.assign(this.position, data);
+    });
   }
 
   onSave() {
-    this.servicePosition.positionSave(this.position).subscribe(data => {
-      this.position = data;
+    this._positionService.savePosition(this.position).subscribe(data => {
+      Object.assign(this.position, data);
     });
   }
 }

@@ -10,25 +10,24 @@ import { EmployeeService } from './../../../service/employee.service';
   styleUrls: ["./employeelist.component.scss"]
 })
 export class EmployeelistComponent implements OnInit {
-  public employeeListData: IEmployee[] = [];
+  public employeeList: IEmployee[] = [];
   public employeeListFiltered: IEmployee[] = [];
 
   constructor(
-    private serviceEmployee: EmployeeService,
-    private router: Router
+    private readonly _router: Router,
+    private readonly _employeeService: EmployeeService
   ) {}
 
   ngOnInit() {
-    this.reloadDataemployee();
+    this.getEmployeeList();
   }
 
-  reloadDataemployee() {
-    this.serviceEmployee.employeeGetAll().subscribe((res: IEmployee[]) => {
-      this.employeeListData = res;
-      console.log(this.employeeListData);
+  getEmployeeList() {
+    this._employeeService.getEmployeeLList().subscribe((res: IEmployee[]) => {
+      this.employeeList = res;
       this.employeeListFiltered = [];
-      if (this.employeeListData.length > 0) {
-        this.employeeListFiltered = this.employeeListData.map(employee => {
+      if (this.employeeList.length > 0) {
+        this.employeeListFiltered = this.employeeList.map(employee => {
           const validText =
             this.isValidString(employee.titleName) &&
             this.isValidString(employee.firstName) &&
@@ -48,13 +47,12 @@ export class EmployeelistComponent implements OnInit {
   }
 
   updateEmployee(id: number) {
-    this.router.navigate(["employee/employeeinfo", id]);
+    this._router.navigate(["employee/employeeinfo", id]);
   }
 
   deleteEmployee(id: number) {
-    // Delete Data and reload data
-    this.serviceEmployee.employeeDeleteById(id).subscribe(() => {
-      this.reloadDataemployee();
+    this._employeeService.deleteEmployee(id).subscribe(() => {
+      this.getEmployeeList();
     });
   }
 }

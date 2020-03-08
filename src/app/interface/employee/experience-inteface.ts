@@ -1,4 +1,4 @@
-export interface EmployeeExperience {
+export interface IExperience {
   id: number;
   listNo: number;
   organizationName: string;

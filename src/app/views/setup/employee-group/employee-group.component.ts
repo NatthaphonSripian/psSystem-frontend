@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { IEmployeeGroup } from '../../../interface/setup/employee-group-interface';
 import { EmployeeGroupService } from './../../../service/employee-group.service';
@@ -10,36 +10,29 @@ import { EmployeeGroupService } from './../../../service/employee-group.service'
   styleUrls: ["./employee-group.component.scss"]
 })
 export class EmployeeGroupComponent implements OnInit {
-  public employeeGroup: IEmployeeGroup;
-  id: number;
+  employeeGroup = { id: null } as IEmployeeGroup;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private groupService: EmployeeGroupService
-  ) {
-    this.employeeGroup = { id: null } as IEmployeeGroup;
-  }
+    private readonly _route: ActivatedRoute,
+    private readonly _groupService: EmployeeGroupService
+  ) {}
 
   ngOnInit() {
-    this.id = this.route.snapshot.params["id"];
-    if (this.id) {
-      this.onLoadDataEmployeeGroup(this.id);
+    const id = this._route.snapshot.params["id"];
+    if (id) {
+      this.getEmployeeGroupById(id);
     }
   }
 
-  onLoadDataEmployeeGroup(id: number) {
-    this.groupService.getEmployeeGroupById(this.id).subscribe(
-      data => {
-        this.employeeGroup = data;
-      },
-      error => console.log(error)
-    );
+  getEmployeeGroupById(id: number) {
+    this._groupService.getEmployeeGroupById(id).subscribe(data => {
+      Object.assign(this.employeeGroup, data);
+    });
   }
 
   onSave() {
-    this.groupService.saveEmployeeGroup(this.employeeGroup).subscribe(data => {
-      this.employeeGroup = data;
+    this._groupService.saveEmployeeGroup(this.employeeGroup).subscribe(data => {
+      Object.assign(this.employeeGroup, data);
     });
   }
 }

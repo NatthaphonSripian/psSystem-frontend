@@ -1,4 +1,4 @@
-export interface EmployeePromote {
+export interface IPromote {
   id: number;
   promoteNo: string;
   promoteDate: Date;

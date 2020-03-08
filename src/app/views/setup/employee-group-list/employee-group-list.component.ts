@@ -10,40 +10,34 @@ import { EmployeeGroupService } from './../../../service/employee-group.service'
   styleUrls: ["./employee-group-list.component.scss"]
 })
 export class EmployeeGroupListComponent implements OnInit {
-  public employeeGroupListData: IEmployeeGroup[] = [];
+  public employeeGroupList: IEmployeeGroup[] = [];
   public employeeGroupListFiltered: IEmployeeGroup[] = [];
 
   constructor(
-    private serviceEmployeeGroup: EmployeeGroupService,
-    private router: Router
+    private readonly _router: Router,
+    private readonly _groupService: EmployeeGroupService
   ) {}
 
   ngOnInit() {
-    this.reloadDataEmployeeGroup();
+    this.getEmployeeGroups();
   }
 
-  reloadDataEmployeeGroup() {
-    this.serviceEmployeeGroup
-      .getEmployeeGroups()
+  getEmployeeGroups() {
+    this._groupService
+      .getEmployeeGroupList()
       .subscribe((res: IEmployeeGroup[]) => {
-        this.employeeGroupListData = res;
-
-        if (this.employeeGroupListData.length > 0) {
-          this.employeeGroupListFiltered = this.employeeGroupListData;
-        } else {
-          this.employeeGroupListFiltered = [];
-        }
+        this.employeeGroupList = res;
+        this.employeeGroupListFiltered = this.employeeGroupList;
       });
   }
 
   updateEmployeeGroup(id: number) {
-    this.router.navigate(["setup/employeegroup", id]);
+    this._router.navigate(["setup/employeegroup", id]);
   }
 
   deleteEmployeeGroup(id: number) {
-    // Delete Data and reload data
-    this.serviceEmployeeGroup.deleteEmployeeGroupById(id).subscribe(() => {
-      this.reloadDataEmployeeGroup();
+    this._groupService.deleteEmployeeGroupById(id).subscribe(() => {
+      this.getEmployeeGroups();
     });
   }
 }

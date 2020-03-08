@@ -1,4 +1,4 @@
-export interface EmployeeGuarantee {
+export interface IGuarantee {
   id: number;
   guaranteeNo: string;
   guaranteeDate: Date;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { IDepartment } from '../../../interface/setup/department-interface';
 import { DepartmentService } from './../../../service/department.service';
@@ -10,35 +10,29 @@ import { DepartmentService } from './../../../service/department.service';
   styleUrls: ["./department.component.scss"]
 })
 export class DepartmentComponent implements OnInit {
-  public department: IDepartment;
-  id: number;
+  department = { id: null } as IDepartment;
+
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private serviceDepartment: DepartmentService
-  ) {
-    this.department = { id: null } as IDepartment;
-  }
+    private readonly _route: ActivatedRoute,
+    private readonly _departmentService: DepartmentService
+  ) {}
 
   ngOnInit() {
-    this.id = this.route.snapshot.params["id"];
-    if (this.id) {
-      this.onLoadDataDepartment(this.id);
+    const id = this._route.snapshot.params["id"];
+    if (id) {
+      this.onLoadDataDepartment(id);
     }
   }
 
   onLoadDataDepartment(id: number) {
-    this.serviceDepartment.departmentGetById(this.id).subscribe(
-      data => {
-        this.department = data;
-      },
-      error => console.log(error)
-    );
+    this._departmentService.getDepartmetnById(id).subscribe(data => {
+      Object.assign(this.department, data);
+    });
   }
 
   onSave() {
-    this.serviceDepartment.departmentSave(this.department).subscribe(data => {
-      this.department = data;
+    this._departmentService.saveDepartment(this.department).subscribe(data => {
+      Object.assign(this.department, data);
     });
   }
 }

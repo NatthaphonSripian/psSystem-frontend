@@ -10,40 +10,34 @@ import { EmployeeLevelService } from './../../../service/employee-level.service'
   styleUrls: ["./employee-level-list.component.scss"]
 })
 export class EmployeeLevelListComponent implements OnInit {
-  public employeeLevelListData: IEmployeeLevel[] = [];
+  public employeeLevels: IEmployeeLevel[] = [];
   public employeeLevelListFiltered: IEmployeeLevel[] = [];
 
   constructor(
-    private serviceEmployeeLevel: EmployeeLevelService,
-    private router: Router
+    private readonly _router: Router,
+    private readonly _levelService: EmployeeLevelService
   ) {}
 
   ngOnInit() {
-    this.reloadDataEmployeeLevel();
+    this.getEmployeeLevels();
   }
 
-  reloadDataEmployeeLevel() {
-    this.serviceEmployeeLevel
-      .getEmployeeLevels()
+  getEmployeeLevels() {
+    this._levelService
+      .getEmployeeLevelList()
       .subscribe((res: IEmployeeLevel[]) => {
-        this.employeeLevelListData = res;
-
-        if (this.employeeLevelListData.length > 0) {
-          this.employeeLevelListFiltered = this.employeeLevelListData;
-        } else {
-          this.employeeLevelListFiltered = [];
-        }
+        this.employeeLevels = res;
+        this.employeeLevelListFiltered = this.employeeLevels;
       });
   }
 
   updateEmployeeLevel(id: number) {
-    this.router.navigate(["setup/employeelevel", id]);
+    this._router.navigate(["setup/employeelevel", id]);
   }
 
   deleteEmployeeLevel(id: number) {
-    // Delete Data and reload data
-    this.serviceEmployeeLevel.employeeLevelDeleteById(id).subscribe(() => {
-      this.reloadDataEmployeeLevel();
+    this._levelService.deleteEmployeeLevel(id).subscribe(() => {
+      this.getEmployeeLevels();
     });
   }
 }

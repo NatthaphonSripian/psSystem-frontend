@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppAsideModule, AppBreadcrumbModule, AppFooterModule, AppHeaderModule, AppSidebarModule } from '@coreui/angular';
@@ -12,6 +12,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultLayoutComponent } from './containers';
+import { GlobalErrorHandler } from './shared/utils/global-error-handler';
 import { EmployeeModule } from './views/employee/employee.module';
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
@@ -57,7 +58,7 @@ const APP_CONTAINERS = [DefaultLayoutComponent];
     ChartsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: ErrorHandler, useClass: GlobalErrorHandler }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
